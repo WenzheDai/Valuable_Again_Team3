@@ -1,0 +1,40 @@
+html, body, #main-container {
+    height: 100%;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+}
+
+#main-container {
+    min-height: 380px;
+    display: flex;
+    justify-content: center;
+}
+
+#login-container {
+    width: 350px;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login-container .card {
+    width: 100%;
+}
+
+#login-container .card .card-header {
+    font-size: 20px;
+}
+
+#login-container .btn {
+    width: 100%;
+    background-color: #2da44e;
+}
+
+#sign-up-info {
+    margin-top: 15px;
+    font-size: 15px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,28 @@
+#header-content{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#search-form{
+    width: 50%;
+}
+
+#search-form #category-select {
+    width: 130px;
+}
+
+#right-box{
+    width: max-content;
+    height: 40px;
+}
+
+#right-box #message #message-badge {
+    width: 15px;
+    height: 15px;
+    bottom: 40px;
+    left: 28px;
+}
+
+#right-box #add-item,#message,#sign-in {
+    margin-right: 9px;
+}

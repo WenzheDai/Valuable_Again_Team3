@@ -1,0 +1,57 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Sign up - Valuable Again
+{% endblock %}
+
+{% block head_block %}
+    <link href="{% static 'css/register.css' %}" rel="stylesheet">
+    <script src="{% static 'js/register.js'%}"></script>
+{% endblock %}
+
+{% block body_block %}
+    <div id="main-container" class="container-fluid">
+        <div id="register-container">
+            <a href="{% url 'goods:index' %}">
+                <img src="{% static 'images/logo.png' %}" width="430" height="130">
+            </a>
+            <div class="card rounded-3">
+                <div class="card-header text-center">
+                    Sign up to Valuable Again
+                </div>
+                <div class="card-body bg-light shadow-sm">
+                    <form class="row g-3">
+                        <div class="col-12 input-group-sm">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="col-12 input-group-sm">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                        <div class="col-12 input-group-sm">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password">
+                        </div>
+                        <div class="col-12 input-group-sm">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="text" class="form-control" id="phone" onkeydown="return keyRules()">
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-sm btn-success">Sign up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="sign-in-info" class="card rounded-3">
+                <div>
+                    Already have an account?
+                    <a href="{% url 'user:sign_in' %}">Sign in now.</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

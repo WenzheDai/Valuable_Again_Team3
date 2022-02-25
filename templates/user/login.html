@@ -1,0 +1,48 @@
+{% extends 'user/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Sign in - Valuable Again
+{% endblock %}
+
+{% block head_block %}
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body_block %}
+    <div id="main-container" class="container-fluid">
+        <div id="login-container">
+            <a href="{% url 'goods:index' %}">
+                <img src="{% static 'images/logo.png' %}" width="430" height="130">
+            </a>
+            <div class="card rounded-3">
+                <div class="card-header text-center">
+                    Sign in to Valuable Again
+                </div>
+                <div class="card-body bg-light shadow-sm">
+                    <form class="row g-3">
+                        <div class="col-12 input-group-sm">
+                            <label for="formGroupExampleInput" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput">
+                        </div>
+                        <div class="col-12 input-group-sm">
+                            <label for="formGroupExampleInput2" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="formGroupExampleInput2">
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-sm btn-success">Sign in</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="sign-up-info" class="card rounded-3">
+                <div>
+                    New to Valuable Again?
+                    <a href="{% url 'user:sign_up' %}">Create an account.</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
