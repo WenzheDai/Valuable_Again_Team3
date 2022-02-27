@@ -20,7 +20,7 @@
                     Sign in to Valuable Again
                 </div>
                 <div class="card-body bg-light shadow-sm">
-                    <form class="row g-3">
+                    <form class="row g-3" method="post">
                         <div class="col-12 input-group-sm">
                             <label for="formGroupExampleInput" class="form-label">Email</label>
                             <input type="text" class="form-control" id="formGroupExampleInput">
@@ -35,12 +35,14 @@
                     </form>
                 </div>
             </div>
-            <div id="sign-up-info" class="card rounded-3">
-                <div>
-                    New to Valuable Again?
-                    <a href="{% url 'user:sign_up' %}">Create an account.</a>
-                </div>
-            </div>
+
+            {# modify of Dai #}
+{#            <div id="sign-up-info" class="card rounded-3">#}
+{#                <div>#}
+{#                    New to Valuable Again?#}
+{#                    <a href="{% url 'user:sign_up' %}">Create an account.</a>#}
+{#                </div>#}
+{#            </div>#}
         </div>
 
     </div>

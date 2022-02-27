@@ -15,7 +15,7 @@ import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+# sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user',     #model of user
-    'order',    #model of goods
-    'goods',    #model of order
+    'apps.user',     #model of user
+    'apps.order',    #model of goods
+    'apps.goods',    #model of order
 ]
 
 MIDDLEWARE = [
@@ -87,8 +87,8 @@ DATABASES = {
     }
 }
 
-# #the model of authentication
-# AUTH_USER_MODEL='user.User'
+#the model of authentication
+AUTH_USER_MODEL='user.User'
 
 
 

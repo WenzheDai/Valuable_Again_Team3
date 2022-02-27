@@ -21,8 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #home page ----- 首页path在这里生成
     path('', views.index, name='index'),
-    path('goods/', include(('goods.urls', 'goods'), namespace='goods')),
-    path('user/', include(('user.urls', 'user'), namespace='user')),
-    path('order/', include(('order.urls', 'order'), namespace='order')),
-    path('', include(('goods.urls', 'goods'), namespace='goods')),
+    # path('goods/', include(('goods.urls', 'goods'), namespace='goods')),
+    path('user/', include(('apps.user.urls', 'apps.user'), namespace='user')),
+    path('order/', include(('apps.order.urls', 'apps.order'), namespace='order')),
+    path('', include(('apps.goods.urls', 'apps.goods'), namespace='goods')),
 ]

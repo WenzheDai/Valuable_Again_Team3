@@ -21,19 +21,27 @@
                     Sign up to Valuable Again
                 </div>
                 <div class="card-body bg-light shadow-sm">
-                    <form class="row g-3">
+                    <form class="row g-3" method="post" action="/user/register/">  {# Motify of Dai #}
+                        {% csrf_token %} {# Motify of Dai  add the django csrf to protect the data #}
+
+                        {# Dai #}
+                        {# every input need add the attribute of name. otherwise the data can not submit to views #}
+
+
                         <div class="col-12 input-group-sm">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name">
+                            <input type="text" class="form-control" id="name" name="name">
                         </div>
                         <div class="col-12 input-group-sm">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email">
+                            <input type="text" class="form-control" id="email" name="email">
                         </div>
                         <div class="col-12 input-group-sm">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
+
+                        {# Due the Database of User don't have the phone, so don't need it.  you can see the sqllite3 #}
                         <div class="col-12 input-group-sm">
                             <label for="phone" class="form-label">Phone</label>
                             <input type="text" class="form-control" id="phone" onkeydown="return keyRules()">
@@ -42,14 +50,21 @@
                             <button type="submit" class="btn btn-sm btn-success">Sign up</button>
                         </div>
                     </form>
+                    {{ errmsg }}
                 </div>
             </div>
-            <div id="sign-in-info" class="card rounded-3">
-                <div>
-                    Already have an account?
-                    <a href="{% url 'user:sign_in' %}">Sign in now.</a>
-                </div>
-            </div>
+
+
+
+            {# Modify of Dai #}
+            {# do not need this content, the function of check in the views #}
+
+{#            <div id="sign-in-info" class="card rounded-3">#}
+{#                <div>#}
+{#                    Already have an account?#}
+{#                    <a href="{% url 'user:sign_in' %}">Sign in now.</a>#}
+{#                </div>#}
+{#            </div>#}
         </div>
 
     </div>
