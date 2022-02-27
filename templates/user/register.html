@@ -21,50 +21,61 @@
                     Sign up to Valuable Again
                 </div>
                 <div class="card-body bg-light shadow-sm">
-                    <form class="row g-3" method="post" action="/user/register/">  {# Motify of Dai #}
+                    <form class="row g-3" method="post" action="/user/register/"
+                          onsubmit="return validateForm()" novalidate>  {# Motify of Dai #}
                         {% csrf_token %} {# Motify of Dai  add the django csrf to protect the data #}
-
-                        {# Dai #}
-                        {# every input need add the attribute of name. otherwise the data can not submit to views #}
-
 
                         <div class="col-12 input-group-sm">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" required>
+                            <div class="invalid-feedback">
+                                Please enter a name.
+                            </div>
                         </div>
                         <div class="col-12 input-group-sm">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email">
+                            <input type="text" class="form-control" id="email" name="email" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid email.
+                            </div>
                         </div>
                         <div class="col-12 input-group-sm">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="invalid-feedback">
+                                Please set a password.
+                            </div>
+                        </div>
+                        <div class="col-12 input-group-sm">
+                            <label for="confirm-password" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm-password" name="confirm-password" required
+                                   aria-describedby="confirmPassword">
+                            <div class="invalid-feedback">
+                                Please confirm your password again.
+                            </div>
                         </div>
 
-                        {# Due the Database of User don't have the phone, so don't need it.  you can see the sqllite3 #}
-                        <div class="col-12 input-group-sm">
-                            <label for="phone" class="form-label">Phone</label>
-                            <input type="text" class="form-control" id="phone" onkeydown="return keyRules()">
-                        </div>
+                        {% if errmsg %}
+                            <div class="col-12">
+                                <div class="register-error alert alert-danger" role="alert">
+                                    {{ errmsg }}
+                                </div>
+                            </div>
+                        {% endif %}
+
                         <div class="col-12">
                             <button type="submit" class="btn btn-sm btn-success">Sign up</button>
                         </div>
                     </form>
-                    {{ errmsg }}
                 </div>
             </div>
 
-
-
-            {# Modify of Dai #}
-            {# do not need this content, the function of check in the views #}
-
-{#            <div id="sign-in-info" class="card rounded-3">#}
-{#                <div>#}
-{#                    Already have an account?#}
-{#                    <a href="{% url 'user:sign_in' %}">Sign in now.</a>#}
-{#                </div>#}
-{#            </div>#}
+            <div id="sign-in-info" class="card rounded-3">
+                <div>
+                    Already have an account?
+                    <a href="{% url 'user:login' %}">Sign in now.</a>
+                </div>
+            </div>
         </div>
 
     </div>

@@ -7,6 +7,7 @@
 
 {% block head_block %}
     <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <script src="{% static 'js/login.js' %}"></script>
 {% endblock %}
 
 {% block body_block %}
@@ -20,21 +21,37 @@
                     Sign in to Valuable Again
                 </div>
                 <div class="card-body bg-light shadow-sm">
-                    <form class="row g-3" method="post">
+                    <form class="row g-3" onsubmit="return validateForm()" novalidate method="post">
                         {% csrf_token %}   {# Password protection #}
                         <div class="col-12 input-group-sm">
-{#                            <label for="formGroupExampleInput" class="form-label">Email</label>#}
-{#                            <input type="text" class="form-control" id="formGroupExampleInput">#}
-
-                            {# Modify of Dai, use the usename to login #}
-                            <label for="formGroupExampleInput" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
-
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                            <div class="invalid-feedback">
+                                Please enter your name.
+                            </div>
                         </div>
                         <div class="col-12 input-group-sm">
-                            <label for="formGroupExampleInput2" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="invalid-feedback">
+                                Please enter your password.
+                            </div>
                         </div>
+                        <div class="col-12 input-group-sm">
+                            <input class="form-check-input" type="checkbox" value="" id="checkRememberName">
+                            <label class="form-check-label" for="checkRememberName">
+                                Remember name
+                            </label>
+                        </div>
+
+                        {% if errmsg %}
+                            <div class="col-12">
+                                <div class="login-error alert alert-danger" role="alert">
+                                    {{ errmsg }}
+                                </div>
+                            </div>
+                        {% endif %}
+
                         <div class="col-12">
                             <button type="submit" class="btn btn-sm btn-success">Sign in</button>
                         </div>
@@ -42,15 +59,13 @@
 
                 </div>
             </div>
-            {{ errmsg }}
 
-            {# modify of Dai #}
-{#            <div id="sign-up-info" class="card rounded-3">#}
-{#                <div>#}
-{#                    New to Valuable Again?#}
-{#                    <a href="{% url 'user:sign_up' %}">Create an account.</a>#}
-{#                </div>#}
-{#            </div>#}
+            <div id="sign-up-info" class="card rounded-3">
+                <div>
+                    New to Valuable Again?
+                    <a href="{% url 'user:register' %}">Create an account.</a>
+                </div>
+            </div>
         </div>
 
     </div>

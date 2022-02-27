@@ -38,3 +38,7 @@ html, body, #main-container {
     justify-content: center;
     align-items: center;
 }
+
+.login-error {
+    padding: 6px!important;
+}
