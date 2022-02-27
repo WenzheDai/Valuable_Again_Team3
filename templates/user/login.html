@@ -21,20 +21,28 @@
                 </div>
                 <div class="card-body bg-light shadow-sm">
                     <form class="row g-3" method="post">
+                        {% csrf_token %}   {# Password protection #}
                         <div class="col-12 input-group-sm">
-                            <label for="formGroupExampleInput" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput">
+{#                            <label for="formGroupExampleInput" class="form-label">Email</label>#}
+{#                            <input type="text" class="form-control" id="formGroupExampleInput">#}
+
+                            {# Modify of Dai, use the usename to login #}
+                            <label for="formGroupExampleInput" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name">
+
                         </div>
                         <div class="col-12 input-group-sm">
                             <label for="formGroupExampleInput2" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="formGroupExampleInput2">
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-sm btn-success">Sign in</button>
                         </div>
                     </form>
+
                 </div>
             </div>
+            {{ errmsg }}
 
             {# modify of Dai #}
 {#            <div id="sign-up-info" class="card rounded-3">#}
@@ -48,3 +56,28 @@
     </div>
 
 {% endblock %}
+
+{# Advice of login page :#}
+{# we can add the function: remember the username  #}
+{# we can use the email to activate the user #}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

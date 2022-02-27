@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import View
 from apps.user.models import User
+from django.contrib.auth import authenticate, login
 import re
 
 # Create your views here.
@@ -58,6 +59,36 @@ class RegisterView(View):
         user = User.objects.create_user(username, email, password)
 
         return redirect(reverse('goods:index'))
+
+
+class LoginView(View):
+    """Login"""
+    """
+    username:Wenzhe   password:123
+    username:Dai      password:forgotten
+    """
+
+    def get(self, request):
+        return render(request, 'user/login.html')
+
+    def post(self, request):
+        """check the login"""
+        #receive the data
+        username = request.POST.get('name')
+        password = request.POST.get('password')
+
+        #check the data
+        if not all([username, password]):
+            return render(request, 'user/login.html', {'errmsg':'Data missing'})
+
+        #system checks the data
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            return redirect(reverse('goods:index'))
+        else:
+            return render(request, 'user/login.html', {'errmsg':'The user name or password is incorrect'})
+
 
 
 
