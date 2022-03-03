@@ -11,6 +11,9 @@ def login(request):
 # def register(request):
 #     return render(request, 'user/register.html')
 
+def user_center(request):
+    return render(request, 'user/userCenter.html')
+
 # Dai:
 # Use the Class View to distinguish the get request and post request
 # html_name:name email password
