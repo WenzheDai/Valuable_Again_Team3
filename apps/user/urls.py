@@ -7,5 +7,7 @@ urlpatterns = [
     # path('register/', views.register, name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('register/', RegisterView.as_view(), name='register'),
-    path('user-center/', views.user_center, name='user-center')
+    path('center/profile', views.user_center_profile, name='center-profile'),
+    path('center/address', views.user_center_address, name='center-address'),
+    path('center/orders', views.user_center_orders, name='center-orders')
 ]

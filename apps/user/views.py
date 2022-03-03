@@ -11,8 +11,14 @@ def login(request):
 # def register(request):
 #     return render(request, 'user/register.html')
 
-def user_center(request):
-    return render(request, 'user/userCenter.html')
+def user_center_profile(request):
+    return render(request, 'user/userProfile.html')
+
+def user_center_address(request):
+    return render(request, 'user/changeAddress.html')
+
+def user_center_orders(request):
+    return render(request, 'user/orders.html')
 
 # Dai:
 # Use the Class View to distinguish the get request and post request
