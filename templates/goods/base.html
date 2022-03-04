@@ -41,13 +41,31 @@
             </div>
             <div>
                 <a id="user-info" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{% static 'images/default-avatar.png' %}" width="40" height="40">
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="user-info">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+                    <img src="{% static 'images/default-avatar.png' %}" width="40" height="40">
+                </a>
+
+                {# Modify of Dai, is_authenticated can verify the status #}
+                {% if user.is_authenticated %}
+                    <ul class="dropdown-menu" aria-labelledby="user-info">
+                        <li><a class="dropdown-item" href="{% url 'goods:index' %}">Home</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user:centerProfile' %}">My Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user:centerAddress' %}">My Address</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user:centerOrders' %}">My orders</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user:logout' %}">Logout</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="dropdown-menu" aria-labelledby="user-info">
+                        <li><a class="dropdown-item" href="{% url 'user:login' %}">Sign In</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user:register' %}">Sign up</a></li>
+                    </ul>
+                {% endif %}
+
+                {# you can add some default label #}
+{#                <ul class="dropdown-menu" aria-labelledby="user-info">#}
+{#                    <li><a class="dropdown-item" href="#">Action</a></li>#}
+{#                    <li><a class="dropdown-item" href="#">Another action</a></li>#}
+{#                    <li><a class="dropdown-item" href="#">Something else here</a></li>#}
+{#                </ul>#}
             </div>
 
             <!--            <button id="sign-in" type="button" class="btn">Sign in</button>-->

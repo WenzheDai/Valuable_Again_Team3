@@ -1,24 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import View
 from apps.user.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from tools.mixin import LoginRequiredMixin
 import re
 
-# Create your views here.
-def login(request):
-    return render(request, 'user/login.html')
-#
-# def register(request):
-#     return render(request, 'user/register.html')
-
-def user_center_profile(request):
-    return render(request, 'user/userProfile.html')
-
-def user_center_address(request):
-    return render(request, 'user/changeAddress.html')
-
-def user_center_orders(request):
-    return render(request, 'user/orders.html')
 
 # Dai:
 # Use the Class View to distinguish the get request and post request
@@ -34,15 +21,6 @@ class RegisterView(View):
         username = request.POST.get('name')
         password = request.POST.get('password')
         email = request.POST.get('email')
-
-        if not username:
-            return render(request, 'user/register.html', {'errmsg': '1'})
-        if not password:
-            return render(request, 'user/register.html', {'errmsg': '2'})
-        if not email:
-            return render(request, 'user/register.html', {'errmsg': '3'})
-
-        # phone = request.POST.get('phone')
 
         #check the wholeness of data
         if not all([username, password, email]):
@@ -94,9 +72,38 @@ class LoginView(View):
         user = authenticate(username=username, password=password)
 
         if user is not None:
-            return redirect(reverse('goods:index'))
+            if user.is_active:
+                login(request, user)
+                next_url = request.GET.get('next', reverse('goods:index'))
+                return redirect(next_url)
         else:
             return render(request, 'user/login.html', {'errmsg':'The user name or password is incorrect'})
+
+class LogoutView(View):
+    """logout the status of login"""
+    def get(self, request):
+        #clear the information of session in user
+        logout(request)
+        return redirect(reverse('goods:index'))
+
+
+
+
+
+class UserInfoView(LoginRequiredMixin, View):
+    """User information"""
+    def get(self, request):
+        return render(request, 'user/userProfile.html')
+
+class AddressView(LoginRequiredMixin, View):
+    """User address"""
+    def get(self, request):
+        return render(request, 'user/changeAddress.html')
+
+class UserOrdersView(LoginRequiredMixin, View):
+    """the orders"""
+    def get(self, request):
+        return render(request, 'user/orders.html')
 
 
 
