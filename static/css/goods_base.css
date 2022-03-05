@@ -26,3 +26,7 @@
 #right-box #add-item,#message,#sign-in {
     margin-right: 9px;
 }
+
+#right-box .avatar-box .dropdown-menu{
+    min-width: fit-content;
+}
