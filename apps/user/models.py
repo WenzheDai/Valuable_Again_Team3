@@ -13,6 +13,7 @@ class User(AbstractUser, BaseModel):
 class Address(BaseModel):
     """Model of Address"""
     user = models.ForeignKey('User', verbose_name='Account', on_delete=models.CASCADE)
+    name = models.CharField(max_length=128, verbose_name='name')
     Address = models.CharField(max_length=256, verbose_name='Address')
     postcode = models.CharField(max_length=6, null=False, verbose_name='Postcode', default='abc')
     phone = models.CharField(max_length=10, verbose_name='Phone')

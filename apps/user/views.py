@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import View
-from apps.user.models import User
+from apps.user.models import User, Address
 from django.contrib.auth import authenticate, login, logout
 from tools.mixin import LoginRequiredMixin
 import re
@@ -87,24 +87,73 @@ class LogoutView(View):
         return redirect(reverse('goods:index'))
 
 
-
-
-
 class UserInfoView(LoginRequiredMixin, View):
     """User information"""
     def get(self, request):
-        return render(request, 'user/userProfile.html')
+
+        user = request.user
+
+
+        #get the user profiles
+        try:
+            de_address = Address.objects.get(user=user, is_default=True)
+        except Address.DoesNotExist:
+            de_address = None
+
+        #get the record of history
+
+        return render(request, 'user/userProfile.html', {'de_address':de_address})
 
 class AddressView(LoginRequiredMixin, View):
     """User address"""
     def get(self, request):
-        return render(request, 'user/changeAddress.html')
+
+        user = request.user
+
+        try:
+            de_address = Address.objects.get(user=user, is_default=True)
+        except Address.DoesNotExist:
+            de_address = None
+
+        return render(request, 'user/changeAddress.html', {'de_address':de_address})
+
+    def post(self, request):
+        # receive the data
+        username = request.POST.get('name')
+        address = request.POST.get('address')
+        postcode = request.POST.get('postcode')
+        phone = request.POST.get('phone')
+
+        # check the data
+        if not all([username, address, postcode, phone]):
+            return render(request, 'user/changeAddress.html', {'errmsg': 'Data Missing'})
+
+        user = request.user
+
+        try:
+            de_address = Address.objects.get(user=user, is_default=True)
+        except Address.DoesNotExist:
+            de_address = None
+
+        #if the user has default address, it should be cancelled default
+        if de_address:
+            Address.objects.update(is_default=False)
+
+        # add the Address
+        Address.objects.create(user=user, name=username, Address=address,
+                               postcode=postcode, phone=phone, is_default=True)
+
+        # return the reply
+        return redirect(reverse('user:centerAddress'))
+
 
 class UserOrdersView(LoginRequiredMixin, View):
     """the orders"""
     def get(self, request):
-        return render(request, 'user/orders.html')
 
+        #get the information of orders
+
+        return render(request, 'user/orders.html')
 
 
 

@@ -35,29 +35,44 @@
         <div class="main-box tab-content">
             <div class="tab-pane fade show active" id="address-tab" role="tabpanel" aria-labelledby="address-tab">
                 <div class="tab-content-header fs-3 border-bottom fw-light">Change address</div>
+
+                {# modify of Dai --- add the default site #}
+                <div>
+					<dl>
+						<dt>Default Address</dt>
+                        {% if de_address %}
+						    <dd>Address:{{ de_address.Address }}  Name:（{{ de_address.name }}） Phone:{{ de_address.phone }}</dd>
+					    {% else %}
+                            <dd>No default site</dd>
+                        {% endif %}
+                    </dl>
+				</div>
+
+
                 <form class="tab-content-body" novalidate method="post">
+                    {% csrf_token %}
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="name" name="name" value="Example name">
+                            <input type="text" class="form-control" id="name" name="name" value="">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Address</label>
                         <div class="col-sm-7">
-                            <textarea class="form-control" id="address" name="address" rows="3">Kelvin Court, 30 Yorkhill St., Glasgow</textarea>
+                            <textarea class="form-control" id="address" name="address" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Postcode</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="postcode" name="postcode" value="G3 8RY">
+                            <input type="text" class="form-control" id="postcode" name="postcode" value="">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Phone number</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="phone" name="phone" value="07410505223">
+                            <input type="text" class="form-control" id="phone" name="phone" value="">
                         </div>
                     </div>
                     <div class="mt-4 col-4">
@@ -66,6 +81,7 @@
                 </form>
             </div>
         </div>
+        {{ errmsg }}
 
     </div>
 {% endblock %}
