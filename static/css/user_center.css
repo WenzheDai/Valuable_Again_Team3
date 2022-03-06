@@ -110,3 +110,24 @@
 .order-box .goods-info-text .goods-name {
     cursor: pointer;
 }
+
+.main-content .top-box img {
+    cursor: pointer;
+}
+
+#upload-avatar-btn {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    height: 38px;
+    width: 80px;
+}
+
+#upload-avatar {
+    position: relative;
+    height: 38px;
+    cursor: pointer;
+    opacity: 0;
+    bottom: 32px;
+    right: 227px;
+}

@@ -13,7 +13,7 @@
 {% block body_block %}
     <div class="main-content container-sm">
         <div class="top-box">
-            <img src="{% static 'images/default-avatar.png' %}" class="rounded-circle" width="63" height="63">
+            <img src="{% static 'images/default-avatar.png' %}" data-bs-toggle="modal" data-bs-target="#upload-avatar-modal" class="rounded-circle" width="63" height="63">
             <div class="top-user-text">
                 <div class="fw-bold fs-5">{{ user.username }}</div>
                 <div class="fs-6">Your personal account center</div>
@@ -84,5 +84,32 @@
         </div>
         {{ errmsg }}
 
+    </div>
+
+    <div class="modal fade" id="upload-avatar-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update avatar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-around">
+                    <img id="big-preview" class="border-1 border" src="{% static 'images/default-avatar.png' %}" width="200" height="200">
+                    <div>
+                        <div class="fs-5 fw-light mb-4">Preview</div>
+                        <img id="sm-preview" class="rounded-circle" src="{% static 'images/default-avatar.png' %}" width="70" height="70">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                <span id="upload-avatar-btn" class="btn btn-outline-primary">
+                    Upload
+                    <input id="upload-avatar" type="file" accept="image/png, image/jpeg, image/jpg">
+                </span>
+
+                    <button type="button" class="btn btn-primary d-block">Save</button>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
