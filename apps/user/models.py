@@ -10,6 +10,7 @@ class User(AbstractUser, BaseModel):
         verbose_name = 'User'
         verbose_name_plural = verbose_name
 
+
 class Address(BaseModel):
     """Model of Address"""
     user = models.ForeignKey('User', verbose_name='Account', on_delete=models.CASCADE)
@@ -23,3 +24,6 @@ class Address(BaseModel):
         db_table = 'df_address'
         verbose_name = 'Address'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.Address
