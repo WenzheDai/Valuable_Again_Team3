@@ -41,7 +41,7 @@
                     <dt>Default Address</dt>
                     {% if de_address %}
                         <div>
-                            <label class="col-sm-5 col-form-label">Name: {{ de_address.name }}</label>
+                            <label class="col-sm-4 col-form-label">Name: {{ de_address.name }}</label>
                             <label class="col-sm-5 col-form-label">Phone: {{ de_address.phone }}</label>
                         </div>
                         <div class="mb-3 border-bottom">
@@ -73,7 +73,7 @@
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Phone number</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="phone" name="phone" value="">
+                            <input type="text" class="form-control" id="phone" name="phone" value="" onkeydown="return keyRules()">
                         </div>
                     </div>
                     <div class="mt-4 col-4">
