@@ -10,5 +10,6 @@ urlpatterns = [
 
     path('', UserInfoView.as_view(), name='centerProfile'),
     path('address', AddressView.as_view(), name='centerAddress'),
-    path('orders', UserOrdersView.as_view(), name='centerOrders')
+    path('orders', UserOrdersView.as_view(), name='centerOrders'),
+    path('uploadAvatar', views.uploadAvatar, name='uploadAvatar')
 ]

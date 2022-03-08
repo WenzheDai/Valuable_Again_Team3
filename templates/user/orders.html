@@ -86,10 +86,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex justify-content-around">
-                    <img id="big-preview" class="border-1 border" src="{% static 'images/default-avatar.png' %}" width="200" height="200">
-                    <div>
-                        <div class="fs-5 fw-light mb-4">Preview</div>
-                        <img id="sm-preview" class="rounded-circle" src="{% static 'images/default-avatar.png' %}" width="70" height="70">
+                    <div class="d-flex justify-content-around">
+                        <img id="big-preview" class="border-1 border" src="{% static 'images/default-avatar.png' %}" width="200" height="200">
+                        <div>
+                            <div class="fs-5 fw-light mb-4">Preview</div>
+                            <img id="sm-preview" class="rounded-circle" src="{% static 'images/default-avatar.png' %}" width="70" height="70">
+                        </div>
+                    </div>
+
+                    <div id="upload-failed-alert" class="visually-hidden upload-img-alert fs-7 fw-light mx-auto mt-3 alert alert-danger d-flex align-items-center" role="alert">
+                        Upload image failed. Please try again
                     </div>
 
                 </div>

@@ -131,3 +131,8 @@
     bottom: 32px;
     right: 227px;
 }
+
+.upload-img-alert {
+    width: 80%;
+    height: 40px;
+}

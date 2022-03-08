@@ -1,6 +1,11 @@
+import time
+
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import View
+
+from Valuable_Again_Team3 import settings
 from apps.user.models import User, Address
 from django.contrib.auth import authenticate, login, logout
 from tools.mixin import LoginRequiredMixin
@@ -156,6 +161,27 @@ class UserOrdersView(LoginRequiredMixin, View):
         return render(request, 'user/orders.html')
 
 
+# upload an avatar to media/avatars/ and return the file name
+def uploadAvatar(request):
+    # get image file object
+    img = request.FILES.get("file", None)
+
+    # get user id
+    userId = request.user.id
+
+    # generate a unique file name: avatar-(userID)-(timestamp).(fileType)
+    fileEnd = img.name.split('.')[-1]
+    fileName = "avatar-" + str(userId) + '-' + str(int(time.time())) + "." + fileEnd
+
+    save_path = '{}/avatars/{}'.format(settings.MEDIA_ROOT, fileName)
+    success = False
+    with open(save_path, 'wb') as f:
+        for content in img.chunks():
+            f.write(content)
+            success = True
+
+    if success: return JsonResponse({'success': True, 'name': fileName})
+    else: return JsonResponse({'success': False, 'errmsg': "Image upload failed."})
 
 
 
