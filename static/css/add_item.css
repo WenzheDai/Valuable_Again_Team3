@@ -1,0 +1,24 @@
+.goods-form-box {
+    min-height: 400px;
+    height: fit-content;
+}
+.submit-btn {
+    width: 200px;
+}
+
+#upload-image-btn {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    height: 38px;
+    width: 160px;
+}
+
+#upload-image {
+    position: relative;
+    height: 38px;
+    cursor: pointer;
+    opacity: 0;
+    bottom: 31px;
+    right: 147px;
+}

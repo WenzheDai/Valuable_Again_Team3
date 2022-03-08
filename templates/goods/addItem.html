@@ -1,0 +1,63 @@
+{% extends 'goods/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Add item - Valuable Again
+{% endblock %}
+
+{% block head_block %}
+    <link href="{% static 'css/add_item.css' %}" rel="stylesheet">
+    <script src="{% static 'js/add_item.js' %}"></script>
+{% endblock %}
+
+{% block body_block %}
+    <div class="main-content container-sm">
+        <div class="row">
+            <div class="text-center fs-2 fw-light mt-2">Add item</div>
+        </div>
+        <div class="goods-form-box row p-3">
+
+            <div class="left-box col d-flex flex-column align-items-center">
+                <img src="{% static 'images/default-image.png' %}" class="rounded d-block" width="380" height="280">
+                <span id="upload-image-btn" class="btn btn-secondary mt-3">
+                    Upload image
+                    <input id="upload-image" type="file" accept="image/png, image/jpeg, image/jpg">
+                </span>
+            </div>
+
+            <div class="right-box col">
+                <div class="mb-4 row">
+                    <label for="goodsName" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="goodsName" name="goodsName" value="">
+                    </div>
+                </div>
+                <div class="mb-4 row">
+                    <label for="goodsPrice" class="col-sm-2 col-form-label">Price</label>
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="goodsPrice" name="goodsPrice">
+                            <span class="input-group-text">£</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4 row">
+                    <label for="goodsPosition" class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="goodsPosition" name="goodsAddress" value="">
+                    </div>
+                </div>
+                <div class="mb-4 row">
+                    <label for="goodsDesc" class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-9">
+                        <textarea type="password" class="form-control" rows="5" id="goodsDesc" name="goodsDesc"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row p-3">
+            <button class="submit-btn btn btn-primary btn-lg mx-auto">Publish</button>
+        </div>
+    </div>
+{% endblock %}

@@ -33,7 +33,7 @@
         </form>
         <div id="right-box" class="d-flex">
             {% if user.is_authenticated %}
-                <button id="add-item" type="button" class="btn btn-outline-primary">Add item</button>
+                <a id="add-item" type="button" class="btn btn-outline-primary" href="{% url 'goods:addItem' %}">Add item</a>
                 <div id="message" type="button">
                     <img src="{% static 'images/message.png' %}" width="40" height="40">
                     <div id="message-badge" class="position-relative rounded-circle bg-danger">
