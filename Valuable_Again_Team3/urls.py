@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from apps.goods import views
+from apps.goods.views import Index
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #home page ----- 首页path在这里生成
-    path('', views.index, name='index'),
+    path('', Index.as_view(), name='index'),
     # path('goods/', include(('goods.urls', 'goods'), namespace='goods')),
     path('user/', include(('apps.user.urls', 'apps.user'), namespace='user')),
     path('order/', include(('apps.order.urls', 'apps.order'), namespace='order')),

@@ -1,5 +1,4 @@
 import time
-
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, reverse
@@ -162,7 +161,7 @@ class UserOrdersView(LoginRequiredMixin, View):
 
 
 
-class UpLoadAvatar(View):
+class UpLoadAvatar(LoginRequiredMixin,View):
     """# upload an avatar to media/avatars/ and return the file name"""
     def post(self, request):
         # get image file object
@@ -187,7 +186,7 @@ class UpLoadAvatar(View):
         else:
             return JsonResponse({'success': False, 'errmsg': "Image upload failed."})
 
-class SaveAvatar(View):
+class SaveAvatar(LoginRequiredMixin,View):
     def post(self, request):
 
         #check the user
