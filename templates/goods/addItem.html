@@ -18,7 +18,10 @@
         <div class="goods-form-box row p-3">
 
             <div class="left-box col d-flex flex-column align-items-center">
-                <img src="{% static 'images/default-image.png' %}" class="rounded d-block" width="380" height="280">
+                <img id="goods-image" src="{% static 'images/default-image.png' %}" class="rounded d-block" width="380" height="280">
+                <div id="upload-failed-alert" class="visually-hidden upload-img-alert fs-7 fw-light mx-auto mt-3 alert alert-danger d-flex align-items-center" role="alert">
+                    Upload image failed. Please try again
+                </div>
                 <span id="upload-image-btn" class="btn btn-secondary mt-3">
                     Upload image
                     <input id="upload-image" type="file" accept="image/png, image/jpeg, image/jpg">
@@ -42,9 +45,15 @@
                     </div>
                 </div>
                 <div class="mb-4 row">
-                    <label for="goodsPosition" class="col-sm-2 col-form-label">Address</label>
+                    <label for="goodsPosition" class="col-sm-2 col-form-label">Category</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="goodsPosition" name="goodsAddress" value="">
+                        <select class="form-select" aria-label="Default select example" id="goodsCategory" name="goodsCategory">
+                            <option selected>Select a category</option>
+                            <option value="1">Tableware</option>
+                            <option value="2">Food</option>
+                            <option value="3">Clothing</option>
+                            <option value="4">Device</option>
+                        </select>
                     </div>
                 </div>
                 <div class="mb-4 row">
@@ -57,8 +66,8 @@
 
         </div>
         <div class="row p-3">
-            <button class="submit-btn btn btn-primary btn-lg mx-auto">Publish</button>
+            <button class="submit-btn btn btn-primary btn-lg mx-auto" onclick="publishItem()">Publish</button>
         </div>
-    {{ errmsg }}
+        {{ errmsg }}
     </div>
 {% endblock %}

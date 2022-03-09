@@ -22,3 +22,14 @@
     bottom: 31px;
     right: 147px;
 }
+
+#goods-image {
+    width: auto;
+    height: auto;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+#upload-failed-alert {
+    height: 40px;
+}
