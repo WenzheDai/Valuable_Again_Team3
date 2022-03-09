@@ -194,7 +194,7 @@ class SaveAvatar(View):
         user = request.user
 
         #get the avatar name
-        img = request.FILES.get("avatarName")
+        img = request.POST.get("avatarName")
 
         #update the database
         User.objects.update(Profile_picture=img)

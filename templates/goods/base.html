@@ -42,7 +42,7 @@
                 </div>
                 <div class="dropdown avatar-box">
                     <a id="user-info" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ MEDIA_URL }}avatars/default-avatar.png" width="40" height="40">
+                        <img src="{{ MEDIA_URL }}avatars/{{ user.Profile_picture }}" width="40" height="40" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-info">
                         <li><a class="dropdown-item" href="{% url 'goods:index' %}">Home</a></li>

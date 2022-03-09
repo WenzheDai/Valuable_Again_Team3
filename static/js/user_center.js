@@ -1,5 +1,5 @@
 let curAvatar = ''
-let uploadedAvatar = 'default-avatar.png'
+let uploadedAvatar = ''
 
 window.onload = function () {
     curAvatar = $("#big-preview").attr('src')
@@ -38,6 +38,7 @@ window.onload = function () {
     myModal.addEventListener('hidden.bs.modal', function (event) {
         $("#big-preview").removeAttr("src").attr("src", curAvatar);
         $("#sm-preview").removeAttr("src").attr("src", curAvatar);
+        uploadedAvatar = ''
     })
 }
 
@@ -69,7 +70,8 @@ function getCookie(name) {
 
 
 function saveAvatar() {
-    let formData = new FormData()
+    if (uploadedAvatar !== '') {
+        let formData = new FormData()
     formData.append('avatarName', uploadedAvatar)
     let csrftoken = getCookie('csrftoken');
     $.ajaxSetup({ beforeSend: function(xhr, settings) {
@@ -84,9 +86,15 @@ function saveAvatar() {
         data: formData,
         dataType: 'text',
         success: function(data) {
-            // let params = JSON.parse(data)
-            console.log(data)
+            let params = JSON.parse(data)
+            if (params.success) {
+                location.reload()
+            }else {
+                $("#upload-failed-alert").classList.remove("visually-hidden")
+            }
 
         }
     })
+    }
+    location.reload()
 }

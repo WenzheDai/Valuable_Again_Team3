@@ -87,10 +87,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="d-flex justify-content-around">
-                        <img id="big-preview" class="border-1 border" src="{{ MEDIA_URL }}avatars/default-avatar.png" width="200" height="200">
+                        <img id="big-preview" class="border-1 border" src="{{ MEDIA_URL }}avatars/{{ user.Profile_picture }}" width="200" height="200">
                         <div>
                             <div class="fs-5 fw-light mb-4">Preview</div>
-                            <img id="sm-preview" class="rounded-circle" src="{{ MEDIA_URL }}avatars/default-avatar.png" width="70" height="70">
+                            <img id="sm-preview" class="rounded-circle" src="{{ MEDIA_URL }}avatars/{{ user.Profile_picture }}" width="70" height="70">
                         </div>
                     </div>
 
