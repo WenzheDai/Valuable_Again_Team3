@@ -161,27 +161,53 @@ class UserOrdersView(LoginRequiredMixin, View):
         return render(request, 'user/orders.html')
 
 
-# upload an avatar to media/avatars/ and return the file name
-def uploadAvatar(request):
-    # get image file object
-    img = request.FILES.get("file", None)
 
-    # get user id
-    userId = request.user.id
+class UpLoadAvatar(View):
+    """# upload an avatar to media/avatars/ and return the file name"""
+    def post(self, request):
+        # get image file object
+        img = request.FILES.get("file", None)
 
-    # generate a unique file name: avatar-(userID)-(timestamp).(fileType)
-    fileEnd = img.name.split('.')[-1]
-    fileName = "avatar-" + str(userId) + '-' + str(int(time.time())) + "." + fileEnd
+        # get user id
+        userId = request.user.id
 
-    save_path = '{}/avatars/{}'.format(settings.MEDIA_ROOT, fileName)
-    success = False
-    with open(save_path, 'wb') as f:
-        for content in img.chunks():
-            f.write(content)
-            success = True
+        # generate a unique file name: avatar-(userID)-(timestamp).(fileType)
+        fileEnd = img.name.split('.')[-1]
+        fileName = "avatar-" + str(userId) + '-' + str(int(time.time())) + "." + fileEnd
 
-    if success: return JsonResponse({'success': True, 'name': fileName})
-    else: return JsonResponse({'success': False, 'errmsg': "Image upload failed."})
+        save_path = '{}/avatars/{}'.format(settings.MEDIA_ROOT, fileName)
+        success = False
+        with open(save_path, 'wb') as f:
+            for content in img.chunks():
+                f.write(content)
+                success = True
+
+        if success:
+            return JsonResponse({'success': True, 'name': fileName})
+        else:
+            return JsonResponse({'success': False, 'errmsg': "Image upload failed."})
+
+class SaveAvatar(View):
+    def post(self, request):
+
+        #check the user
+        user = request.user
+
+        #get the avatar name
+        img = request.FILES.get("avatarName")
+
+        #update the database
+        User.objects.update(Profile_picture=img)
+
+        #check the update
+        if User.objects.get(Profile_picture=img):
+            return JsonResponse({'success':True, 'name':img})
+        else:
+            return JsonResponse({'success': False, 'errmsg': "Image upload failed."})
+
+
+
+
 
 
 

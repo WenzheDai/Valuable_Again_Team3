@@ -1,6 +1,7 @@
 from django.urls import path, include
 from apps.user import views
-from apps.user.views import RegisterView, LoginView, UserInfoView, UserOrdersView, AddressView, LogoutView
+from apps.user.views import RegisterView, LoginView, UserInfoView, \
+    UserOrdersView, AddressView, LogoutView, UpLoadAvatar,SaveAvatar
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
@@ -11,5 +12,6 @@ urlpatterns = [
     path('', UserInfoView.as_view(), name='centerProfile'),
     path('address', AddressView.as_view(), name='centerAddress'),
     path('orders', UserOrdersView.as_view(), name='centerOrders'),
-    path('uploadAvatar', views.uploadAvatar, name='uploadAvatar')
+    path('uploadAvatar', UpLoadAvatar.as_view(), name='uploadAvatar'),
+    path('saveAvatar', SaveAvatar.as_view(), name='saveAvatar')
 ]

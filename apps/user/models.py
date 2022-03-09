@@ -4,6 +4,7 @@ from db.base_model import BaseModel
 
 class User(AbstractUser, BaseModel):
     """Model of User-----inherit the Django built-in authenticator system"""
+    Profile_picture = models.ImageField(max_length=512, verbose_name="Profile_picture", default="default-avatar.png")
 
     class Meta:
         db_table = 'df_user'
@@ -16,7 +17,7 @@ class Address(BaseModel):
     user = models.ForeignKey('User', verbose_name='Account', on_delete=models.CASCADE)
     name = models.CharField(max_length=128, verbose_name='name')
     Address = models.CharField(max_length=256, verbose_name='Address')
-    postcode = models.CharField(max_length=6, null=False, verbose_name='Postcode', default='abc')
+    postcode = models.CharField(max_length=6, null=False, verbose_name='Postcode')
     phone = models.CharField(max_length=10, verbose_name='Phone')
     is_default = models.BooleanField(default=False, verbose_name='Default')
 

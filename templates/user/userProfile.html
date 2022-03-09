@@ -13,7 +13,7 @@
 {% block body_block %}
     <div class="main-content container-sm">
         <div class="top-box">
-            <img src="{{ MEDIA_URL }}avatars/default-avatar.png" data-bs-toggle="modal" data-bs-target="#upload-avatar-modal" class="rounded-circle" width="63" height="63">
+            <img src="{{ MEDIA_URL }}avatars/{{ user.Profile_picture }}" data-bs-toggle="modal" data-bs-target="#upload-avatar-modal" class="rounded-circle" width="63" height="63">
             <div class="top-user-text">
                 <div class="fw-bold fs-5">{{ user.username }}</div>
                 <div class="fs-6">Your personal account center</div>
