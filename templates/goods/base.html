@@ -21,7 +21,10 @@
 <body>
 <nav id="header" class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div id="header-content" class="container-fluid">
-        <img id="logo-text" src="{% static 'images/logo.png' %}" alt="" width="170" height="40">
+        <a href="{% url 'goods:index' %}">
+            <img id="logo-text" src="{% static 'images/logo.png' %}" alt="" width="170" height="40">
+        </a>
+
         <form id="search-form" class="d-flex" role="search">
             <select id="category-select" class="form-select" aria-label="Category">
                 <option selected value="0">Category</option>
