@@ -55,25 +55,25 @@
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="name" name="name" value="">
+                            <input type="text" class="form-control" id="name" name="name" value="{{ de_address.name }}">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Address</label>
                         <div class="col-sm-7">
-                            <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                            <textarea class="form-control" id="address" name="address" rows="3">{{ de_address.Address }}</textarea>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Postcode</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="postcode" name="postcode" value="">
+                            <input type="text" class="form-control" id="postcode" name="postcode" value="{{ de_address.postcode }}">
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Phone number</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="phone" name="phone" value="" onkeydown="return keyRules()">
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ de_address.phone }}" onkeydown="return keyRules()">
                         </div>
                     </div>
                     <div class="mt-4 col-4">
