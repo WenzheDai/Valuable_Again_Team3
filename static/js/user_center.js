@@ -1,11 +1,12 @@
+let curAvatar = ''
+let uploadedAvatar = 'default-avatar.png'
+
 window.onload = function () {
-    let curAvatar = $("#big-preview").attr('src')
+    curAvatar = $("#big-preview").attr('src')
     let avatarInput = document.getElementById("upload-avatar")
     avatarInput.addEventListener('change', function () {
         let file = this.files[0];
-        console.log(file)
         let csrftoken = getCookie('csrftoken');
-        console.log(csrftoken)
         $.ajaxSetup({ beforeSend: function(xhr, settings) {
                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
             }
@@ -24,7 +25,7 @@ window.onload = function () {
                 if (params.success) {
                     $("#big-preview").removeAttr("src").attr("src", "/media/avatars/"+params.name);
                     $("#sm-preview").removeAttr("src").attr("src", "/media/avatars/"+params.name);
-                    $("#upload-failed-alert").classList.add("visually-hidden")
+                    uploadedAvatar = params.name
                 }else {
                     $("#upload-failed-alert").classList.remove("visually-hidden")
                 }
@@ -64,4 +65,28 @@ function getCookie(name) {
         }
     }
     return cookieValue;
+}
+
+
+function saveAvatar() {
+    let formData = new FormData()
+    formData.append('avatarName', uploadedAvatar)
+    let csrftoken = getCookie('csrftoken');
+    $.ajaxSetup({ beforeSend: function(xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    })
+    $.ajax({
+        url: 'saveAvatar',
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        data: formData,
+        dataType: 'text',
+        success: function(data) {
+            // let params = JSON.parse(data)
+            console.log(data)
+
+        }
+    })
 }
