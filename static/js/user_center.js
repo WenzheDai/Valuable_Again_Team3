@@ -1,4 +1,5 @@
 window.onload = function () {
+    let curAvatar = $("#big-preview").attr('src')
     let avatarInput = document.getElementById("upload-avatar")
     avatarInput.addEventListener('change', function () {
         let file = this.files[0];
@@ -31,6 +32,12 @@ window.onload = function () {
             }
         })
     });
+
+    let myModal = document.getElementById('upload-avatar-modal')
+    myModal.addEventListener('hidden.bs.modal', function (event) {
+        $("#big-preview").removeAttr("src").attr("src", curAvatar);
+        $("#sm-preview").removeAttr("src").attr("src", curAvatar);
+    })
 }
 
 // an input rule just allowed numbers
