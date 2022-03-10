@@ -15,8 +15,9 @@ class Index(View):
 
 class ItemDetial(View):
     def get(self, request, item_id):
-        item = Items.objects.all().values('itemsName', 'price', 'id', 'describe','itempicture__itemPicture',
-                                          'user__username', 'user__Profile_picture')
+        item = Items.objects.all().values('itemsName', 'itemCategory', 'price', 'id', 'describe','itempicture__itemPicture',
+                                          'user__username', 'user__Profile_picture', 'user__address__Address',
+                                          'user__email')
         detail = item.get(id=item_id)
 
         return render(request, 'goods/detail.html', {'item':detail})

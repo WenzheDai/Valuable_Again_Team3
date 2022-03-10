@@ -1,10 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{{ item.user__username }}
-</body>
-</html>
+{% extends 'goods/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Add item - Valuable Again
+{% endblock %}
+
+{% block head_block %}
+    <link href="{% static 'css/goods_detail.css' %}" rel="stylesheet">
+    <script src="{% static 'js/goods_detail.js' %}"></script>
+{% endblock %}
+
+{% block body_block %}
+    <div class="main-content container-sm">
+        <div class="goods-form-box row p-3 border-bottom border-1">
+
+            <div class="left-box col d-flex flex-column align-items-center justify-content-center">
+                <img id="goods-image" src="{{ MEDIA_URL }}/goodsImages/{{ item.itempicture__itemPicture }}" class="rounded d-block" width="380" height="280">
+            </div>
+
+            <div class="right-box col">
+                <div class="mb-3 row">
+                    <div class="col-sm-10 fs-1 fw-light">
+                        {{ item.itemsName }}
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Category</label>
+                    <div class="col-sm-9">
+                        <input type="text" readonly disabled class="form-control-plaintext" value="{{ item.itemCategory }}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Price</label>
+                    <div class="col-sm-9">
+                        <div class="input-group fs-3">
+                            <input type="text" readonly disabled class="form-control-plaintext item-price" value="£ {{ item.price }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-9 pt-1">
+                        {{ item.describe }}
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-9">
+                        <input type="text" readonly disabled class="form-control-plaintext" value="{{ item.user__address__Address }}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Seller</label>
+                    <div class="seller-box col-sm-9 d-flex align-items-center">
+                        <img src="{{ MEDIA_URL }}/avatars/{{ item.user__Profile_picture }}" width="40" height="40">
+                        <div class="m-2">{{ item.user__username }}</div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-9">
+                        <input type="text" readonly disabled class="form-control-plaintext" value="{{ item.user__email }}">
+                    </div>
+                </div>
+                <div class="mt-4 row">
+                    <button class="book-btn btn btn-primary">Book</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

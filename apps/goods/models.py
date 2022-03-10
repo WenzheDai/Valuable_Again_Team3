@@ -6,7 +6,7 @@ class Items(BaseModel):
     """model of items"""
     user = models.ForeignKey(User, verbose_name='user', on_delete=models.CASCADE)
     itemsName = models.CharField(max_length=32, verbose_name='itemName')
-    price = models.IntegerField(verbose_name='itemPrice', default=0)
+    price = models.FloatField(verbose_name='itemPrice', default=0.0)
     describe = models.CharField(max_length=2000, verbose_name='describe')
     itemCategory = models.CharField(max_length=16, verbose_name='itemCategory')
 

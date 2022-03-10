@@ -1,0 +1,30 @@
+.right-box .left-box {
+    max-height: fit-content;
+    height: auto;
+}
+
+#goods-image {
+    width: auto;
+    height: auto;
+    max-width: 500px;
+    max-height: 440px;
+}
+
+.item-price {
+    color: red;
+}
+
+.book-btn {
+    width: 130px;
+    margin-left: 15px;
+}
+
+.seller-box {
+    width: fit-content;
+    cursor: pointer;
+}
+
+.popover-body {
+    width: fit-content;
+    white-space: pre;
+}
