@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import View
 from tools.mixin import LoginRequiredMixin
-from apps.goods.models import Items
+from apps.goods.models import Items, ItemPicture
 from Valuable_Again_Team3 import settings
 import time
 
@@ -17,22 +17,23 @@ class AddItem(LoginRequiredMixin,View):
 
     def post(self, request):
         #receive the data
-        goodsName = request.Post.get('goodsName')
-        price = request.Post.get('goodsPrice')
-        describe = request.Post.get('goodsDesc')
+        user = request.user
+        goodsName = request.POST.get('goodsName')
+        price = request.POST.get('goodsPrice')
+        category = request.POST.get('goodsCategory')
+        describe = request.POST.get('goodsDesc')
+        image = request.POST.get('goodsImage')
 
         #check the data
-        if all([goodsName, price, describe]):
+        if not all([goodsName, price, category, describe, image]):
             return JsonResponse({'success': False, 'errmsg': 'Data Missing'})
 
-            # return render(request, 'goods/addItem.html', {'errmsg': 'Data Missing'})
-
         #add the data to database
-        Items.objects.create(itemsName=goodsName, price=price, describe=describe)
+        item = Items.objects.create(user=user,itemsName=goodsName, price=price, describe=describe)
+        ItemPicture.objects.create(item=item, itemPicture=image)
+
 
         return JsonResponse({'success':True})
-
-        # return redirect(reverse('goods:index'))
 
 
 class UpLoadGoodsImage(LoginRequiredMixin,View):
@@ -58,3 +59,4 @@ class UpLoadGoodsImage(LoginRequiredMixin,View):
             return JsonResponse({'success': True, 'name': fileName})
         else:
             return JsonResponse({'success': False, 'errmsg': "Image upload failed."})
+

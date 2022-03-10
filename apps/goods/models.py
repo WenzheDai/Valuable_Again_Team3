@@ -15,7 +15,8 @@ class Items(BaseModel):
         verbose_name_plural=verbose_name
 
 class ItemPicture(BaseModel):
-    itemPicture = models.ForeignKey(Items, verbose_name='items', on_delete=models.CASCADE)
+    item = models.ForeignKey(Items, verbose_name='items', on_delete=models.CASCADE)
+    itemPicture = models.ImageField(max_length=20, verbose_name='goodsImage', default='default-image.png')
 
     class Meta:
         db_table = "df_itemPicture"
