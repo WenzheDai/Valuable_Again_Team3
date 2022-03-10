@@ -8,6 +8,7 @@ class Items(BaseModel):
     itemsName = models.CharField(max_length=32, verbose_name='itemName')
     price = models.IntegerField(verbose_name='itemPrice', default=0)
     describe = models.CharField(max_length=2000, verbose_name='describe')
+    itemCategory = models.CharField(max_length=16, verbose_name='itemCategory')
 
     class Meta:
         db_table = "df_items"
@@ -22,10 +23,4 @@ class ItemPicture(BaseModel):
         db_table = "df_itemPicture"
         verbose_name = "ItemPicture"
         verbose_name_plural = verbose_name
-
-
-#Considering
-# class ItemCategory(BaseModel):
-
-
 

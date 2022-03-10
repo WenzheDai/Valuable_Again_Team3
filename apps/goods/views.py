@@ -29,7 +29,7 @@ class AddItem(LoginRequiredMixin,View):
             return JsonResponse({'success': False, 'errmsg': 'Data Missing'})
 
         #add the data to database
-        item = Items.objects.create(user=user,itemsName=goodsName, price=price, describe=describe)
+        item = Items.objects.create(user=user,itemsName=goodsName, price=price, describe=describe, itemCategory=category)
         ItemPicture.objects.create(item=item, itemPicture=image)
 
 
