@@ -1,0 +1,12 @@
+.goods-list {
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: start;
+}
+.goods-card {
+    width: 180px;
+    margin: 10px;
+    cursor: pointer;
+}
