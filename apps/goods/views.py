@@ -9,7 +9,10 @@ import time
 # Create your views here.
 class Index(View):
     def get(self, request):
-        return render(request, 'goods/index.html')
+        item = Items.objects.all().values_list('itemsName', 'price','id', 'itempicture__itemPicture')
+
+
+        return render(request, 'goods/index.html', {'items':item})
 
 class AddItem(LoginRequiredMixin,View):
     def get(self, request):
