@@ -13,6 +13,14 @@ class Index(View):
 
         return render(request, 'goods/index.html', {'items':item})
 
+class ItemDetial(View):
+    def get(self, request, item_id):
+        item = Items.objects.all().values('itemsName', 'price', 'id', 'describe','itempicture__itemPicture',
+                                          'user__username', 'user__Profile_picture')
+        detail = item.get(id=item_id)
+
+        return render(request, 'goods/detail.html', {'item':detail})
+
 class AddItem(LoginRequiredMixin,View):
     def get(self, request):
         return render(request, 'goods/addItem.html')
