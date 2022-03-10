@@ -9,8 +9,7 @@ import time
 # Create your views here.
 class Index(View):
     def get(self, request):
-        item = Items.objects.all().values_list('itemsName', 'price','id', 'itempicture__itemPicture')
-
+        item = Items.objects.all().values('itemsName', 'price','id', 'itempicture__itemPicture')
 
         return render(request, 'goods/index.html', {'items':item})
 
