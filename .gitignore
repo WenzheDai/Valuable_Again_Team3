@@ -1,3 +1,4 @@
 /apps/user/migrations/
 /apps/order/migrations/
 /apps/goods/migrations/
+/db.sqlite3
