@@ -6,11 +6,16 @@ from apps.goods.models import Items, ItemPicture
 from Valuable_Again_Team3 import settings
 import time
 
-# Create your views here.
+
 class Index(View):
     def get(self, request):
         item = Items.objects.all().values('itemsName', 'price','id', 'itempicture__itemPicture')
+        return render(request, 'goods/index.html', {'items':item})
 
+
+class IndexCategory(View):
+    def get(self, request, category):
+        item = Items.objects.filter(itemCategory=category).values('itemsName', 'price', 'id', 'itempicture__itemPicture')
         return render(request, 'goods/index.html', {'items':item})
 
 class ItemDetial(View):

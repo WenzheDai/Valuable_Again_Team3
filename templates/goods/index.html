@@ -3,17 +3,18 @@
 
 {% block head_block %}
     <link href="{% static 'css/index.css' %}" rel="stylesheet">
+    <script src="{% static 'js/index.js' %}"></script>
 {% endblock %}
 
 {% block body_block %}
     <div class="main-content container-sm">
-        <nav class="nav nav-pills mt-2">
-            <a class="nav-link active" href="">All</a>
-            <a class="nav-link" href="#clothe">Clothe</a>
-            <a class="nav-link" href="#food">Food</a>
-            <a class="nav-link" href="#">Link</a>
-            <a class="nav-link" href="#">Link</a>
-            <a class="nav-link" href="#">Link</a>
+        <nav class="category-list nav nav-pills mt-2">
+            <a id="category-all" class="nav-link" href="/">All</a>
+            <a id="category-Tableware" class="nav-link" href="Tableware">Tableware</a>
+            <a id="category-Food" class="nav-link" href="Food">Food</a>
+            <a id="category-Clothing" class="nav-link" href="Clothing">Clothing</a>
+            <a id="category-Device" class="nav-link" href="Device">Device</a>
+            <a id="category-Furniture" class="nav-link" href="Furniture">Furniture</a>
         </nav>
         <div class="goods-list">
             {% if items %}
