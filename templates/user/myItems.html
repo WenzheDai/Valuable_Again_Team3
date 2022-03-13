@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Address - Valuable Again
+    My Items - Valuable Again
 {% endblock %}
 
 {% block head_block %}
@@ -25,10 +25,10 @@
                     <button onclick="window.location.href='{% url 'user:centerProfile' %}'" class="nav-link" type="button">User profile</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button onclick="window.location.href='{% url 'user:centerAddress' %}'" class="nav-link active" type="button">Update address</button>
+                    <button onclick="window.location.href='{% url 'user:centerAddress' %}'" class="nav-link" type="button">Update address</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button onclick="window.location.href='{% url 'user:myItems' %}'" class="nav-link" type="button">My items</button>
+                    <button onclick="window.location.href='{% url 'user:myItems' %}'" class="nav-link active" type="button">My items</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button onclick="window.location.href='{% url 'user:centerOrders' %}'" class="nav-link" type="button">My orders</button>
@@ -36,56 +36,28 @@
             </ul>
         </div>
         <div class="main-box tab-content">
-            <div class="tab-pane fade show active" id="address-tab" role="tabpanel" aria-labelledby="address-tab">
-                <div class="tab-content-header fs-3 border-bottom fw-light">Change address</div>
+            <div class="tab-pane fade show active" id="orders-tab" role="tabpanel" aria-labelledby="orders-tab">
+                <div class="tab-content-header fs-3 border-bottom fw-light">My items</div>
+                <div class="tab-content-body">
+                    {% for item in itemList %}
+                    <div class="mb-3 row order-box">
+                        <div class="goods-img-box" onclick="window.location.href='{% url 'goods:detail' item.id %}'">
+                            <img src="{{ MEDIA_URL }}/goodsImages/{{ item.itempicture__itemPicture }}">
+                        </div>
+                        <div class="goods-info-text">
+                            <div class="fw-bold fs-5 goods-name" onclick="window.location.href='{% url 'goods:detail' item.id %}'">{{ item.itemsName }}</div>
+                            <div>{{ item.create_time }}</div>
+                        </div>
+                        <div class="w-25 fs-5">Price:  <span class="fs-4">{{ item.price }}</span> £</div>
+                        <div class="w-25 fs-5">Status:  <span class="badge rounded-pill bg-success">Finished</span></div>
+                    </div>
+                    <hr>
 
-                <form class="tab-content-body" novalidate method="post">
-                    {% csrf_token %}
-                    <dt>Default Address</dt>
-                    {% if de_address %}
-                        <div>
-                            <label class="col-sm-4 col-form-label">Name: {{ de_address.name }}</label>
-                            <label class="col-sm-5 col-form-label">Phone: {{ de_address.phone }}</label>
-                        </div>
-                        <div class="mb-3 border-bottom">
-                            <label class="col-sm-12 col-form-label">Address: {{ de_address.Address }}</label>
-                        </div>
-                    {% else %}
-                        <div class="mb-3 border-bottom">
-                            <label class="col-sm-12 col-form-label">No default address</label>
-                        </div>
-                    {% endif %}
-                    <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="name" name="name" value="{{ de_address.name }}">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label">Address</label>
-                        <div class="col-sm-7">
-                            <textarea class="form-control" id="address" name="address" rows="3">{{ de_address.Address }}</textarea>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label">Postcode</label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="postcode" name="postcode" value="{{ de_address.postcode }}">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label">Phone number</label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="phone" name="phone" value="{{ de_address.phone }}" onkeydown="return keyRules()">
-                        </div>
-                    </div>
-                    <div class="mt-4 col-4">
-                        <button type="submit" class="btn btn-sm btn-success">Update address</button>
-                    </div>
-                </form>
+                    {% endfor %}
+
+                </div>
             </div>
         </div>
-        {{ errmsg }}
 
     </div>
 

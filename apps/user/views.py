@@ -6,6 +6,7 @@ from django.views.generic import View
 
 from Valuable_Again_Team3 import settings
 from apps.user.models import User, Address
+from apps.goods.models import Items
 from django.contrib.auth import authenticate, login, logout
 from tools.mixin import LoginRequiredMixin
 import re
@@ -149,6 +150,25 @@ class AddressView(LoginRequiredMixin, View):
 
         # return the reply
         return redirect(reverse('user:centerAddress'))
+
+
+class UserItemsView(LoginRequiredMixin, View):
+    """User's items"""
+    def get(self, request):
+
+        user = request.user
+
+
+        #get the user's items
+        try:
+            itemList = Items.objects.filter(user=user).values('id', 'itemsName', 'price', 'create_time',
+                                                              'describe', 'itemCategory', 'itempicture__itemPicture')
+        except Address.DoesNotExist:
+            itemList = None
+
+        #get the record of history
+
+        return render(request, 'user/myItems.html', {'itemList':itemList})
 
 
 class UserOrdersView(LoginRequiredMixin, View):
