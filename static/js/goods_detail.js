@@ -21,7 +21,7 @@ function bookGoods(id) {
             if (params.success) {
                 location.reload()
             }else {
-                alert("Book error!")
+                alert(params.errmsg)
             }
 
         }
