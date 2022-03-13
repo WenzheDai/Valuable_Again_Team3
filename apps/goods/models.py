@@ -10,6 +10,9 @@ class Items(BaseModel):
     describe = models.CharField(max_length=2000, verbose_name='describe')
     itemCategory = models.CharField(max_length=16, verbose_name='itemCategory')
 
+    #Three status On sale/Booked/Sold
+    status = models.CharField(max_length=32, verbose_name='item_status', default="On sale")
+
     class Meta:
         db_table = "df_items"
         verbose_name = "Items"
