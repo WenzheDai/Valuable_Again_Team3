@@ -39,13 +39,16 @@ class ItemDetial(View):
         if item is None:
             return JsonResponse({'success':False, 'errmsg':'No item'})
 
+        itemUser = item.user
 
+        if itemUser == user:
+            return JsonResponse({'success':False, 'errmsg':'You cannot buy your own good'})
+
+
+        #update the data
         item.status = 'Booked'
         item.save()
-
-        Orders.objects.create(seller=user, buyer=item.user, tradGood=item)
-
-
+        Orders.objects.create(seller=user, buyer=itemUser, tradGood=item)
 
         return JsonResponse({'success':True})
 
