@@ -10,5 +10,5 @@ urlpatterns = [
     path('detail/<int:item_id>', ItemDetial.as_view(), name='detail'),
     path('addItem', AddItem.as_view(), name='addItem'),
     path('uploadGoodsImage', UpLoadGoodsImage.as_view(), name='uploadGoodsImage'),
-    path('bookGoods', AddItem.as_view(), name='bookGoods')
+    path('detail/bookGoods', ItemDetial.as_view(), name='bookGoods')
 ]

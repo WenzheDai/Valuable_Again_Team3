@@ -35,7 +35,7 @@ class ItemDetial(View):
         #
         item_id = request.POST.get("id")
 
-        item = Items.objects.get(id(item_id))
+        item = Items.objects.get(id=item_id)
         if item is None:
             return JsonResponse({'success':False, 'errmsg':'No item'})
 
