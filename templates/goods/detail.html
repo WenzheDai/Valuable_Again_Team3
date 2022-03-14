@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Add item - Valuable Again
+    {{ item.itemsName }} - Valuable Again
 {% endblock %}
 
 {% block head_block %}
@@ -64,9 +64,9 @@
                     </div>
                 </div>
                 <div class="mt-4 row">
-                    {% if item.status == 'On sale' %}
+                    {% if item.status == 'On sale' and user.is_authenticated and user.id != item.user_id%}
                         <button class="book-btn btn btn-primary" onclick="bookGoods({{ item.id }})">Book</button>
-                    {% else %}
+                    {% elif item.status != 'On sale' %}
                         <div>{{ item.status }}</div>
                     {% endif %}
                 </div>
