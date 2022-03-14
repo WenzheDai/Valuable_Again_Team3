@@ -1,0 +1,6 @@
+# Specify which fields in the table to create index data from
+
+{{ object.itemsName }} #according to the items' name create index
+{{ object.describe }}  #accoording to the description create index
+{{ object.itemCategory }} #according to the category create index
+{{ object.user.username }} #according to the username create indx
