@@ -169,6 +169,7 @@ def add_address(user, name, address, postcode, phone, is_default):
     p.save()
     return p
 
+
 def add_users(username, password):
     c = User.objects.get_or_create(username=username)[0]
     c.password = password

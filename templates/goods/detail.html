@@ -64,7 +64,11 @@
                     </div>
                 </div>
                 <div class="mt-4 row">
-                    <button class="book-btn btn btn-primary">Book</button>
+                    {% if item.status == 'On sale' %}
+                        <button class="book-btn btn btn-primary" onclick="bookGoods({{ item.id }})">Book</button>
+                    {% else %}
+                        <div>{{ item.status }}</div>
+                    {% endif %}
                 </div>
             </div>
 

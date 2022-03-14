@@ -1,12 +1,16 @@
 .goods-list {
-    padding: 10px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    align-items: start;
+    -webkit-column-width: 180px;
+    -moz-column-width: 180px;
+    column-width: 180px;
+    margin-top: 10px;
+    padding: 5px 0;
+    overflow: visible;
 }
 .goods-card {
-    width: 180px;
-    margin: 10px;
+    margin: 0 6px 15px 6px;
+    -webkit-column-break-inside: avoid;
+    break-inside: avoid;
+    text-align: center;
     cursor: pointer;
+    width: 180px;
 }

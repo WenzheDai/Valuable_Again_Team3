@@ -3,24 +3,54 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import View
 from tools.mixin import LoginRequiredMixin
 from apps.goods.models import Items, ItemPicture
+from apps.order.models import Orders
 from Valuable_Again_Team3 import settings
 import time
 
-# Create your views here.
+
 class Index(View):
     def get(self, request):
         item = Items.objects.all().values('itemsName', 'price','id', 'itempicture__itemPicture')
+        return render(request, 'goods/index.html', {'items':item})
 
+
+class IndexCategory(View):
+    def get(self, request, category):
+        item = Items.objects.filter(itemCategory=category).values('itemsName', 'price', 'id', 'itempicture__itemPicture')
         return render(request, 'goods/index.html', {'items':item})
 
 class ItemDetial(View):
     def get(self, request, item_id):
-        item = Items.objects.all().values('itemsName', 'itemCategory', 'price', 'id', 'describe','itempicture__itemPicture',
+        item = Items.objects.all().values('itemsName', 'itemCategory', 'price', 'status','id', 'describe','itempicture__itemPicture',
                                           'user__username', 'user__Profile_picture', 'user__address__Address',
                                           'user__email')
         detail = item.get(id=item_id)
 
         return render(request, 'goods/detail.html', {'item':detail})
+
+    def post(self, request):
+        """set the submit the order"""
+        #check the user
+        user = request.user
+        #
+        item_id = request.POST.get("id")
+
+        item = Items.objects.get(id=item_id)
+        if item is None:
+            return JsonResponse({'success':False, 'errmsg':'No item'})
+
+        itemUser = item.user
+
+        if itemUser == user:
+            return JsonResponse({'success':False, 'errmsg':'You cannot buy your own good'})
+
+
+        #update the data
+        item.status = 'Booked'
+        item.save()
+        Orders.objects.create(seller=user, buyer=itemUser, tradGood=item)
+
+        return JsonResponse({'success':True})
 
 class AddItem(LoginRequiredMixin,View):
     def get(self, request):

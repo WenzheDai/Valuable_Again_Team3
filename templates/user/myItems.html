@@ -1,0 +1,96 @@
+{% extends 'goods/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    My Items - Valuable Again
+{% endblock %}
+
+{% block head_block %}
+    <link href="{% static 'css/user_center.css' %}" rel="stylesheet">
+    <script src="{% static 'js/user_center.js' %}"></script>
+{% endblock %}
+
+{% block body_block %}
+    <div class="main-content container-sm">
+        <div class="top-box">
+            <img src="{{ MEDIA_URL }}avatars/{{ user.Profile_picture }}" data-bs-toggle="modal" data-bs-target="#upload-avatar-modal" class="rounded-circle" width="63" height="63">
+            <div class="top-user-text">
+                <div class="fw-bold fs-5">{{ user.username }}</div>
+                <div class="fs-6">Your personal account center</div>
+            </div>
+        </div>
+        <div class="left-box">
+            <ul class="nav nav-pills nav-fill flex-column" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button onclick="window.location.href='{% url 'user:centerProfile' %}'" class="nav-link" type="button">User profile</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button onclick="window.location.href='{% url 'user:centerAddress' %}'" class="nav-link" type="button">Update address</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button onclick="window.location.href='{% url 'user:myItems' %}'" class="nav-link active" type="button">My items</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button onclick="window.location.href='{% url 'user:centerOrders' %}'" class="nav-link" type="button">My orders</button>
+                </li>
+            </ul>
+        </div>
+        <div class="main-box tab-content">
+            <div class="tab-pane fade show active" id="orders-tab" role="tabpanel" aria-labelledby="orders-tab">
+                <div class="tab-content-header fs-3 border-bottom fw-light">My items</div>
+                <div class="tab-content-body">
+                    {% for item in itemList %}
+                    <div class="mb-3 row order-box">
+                        <div class="goods-img-box" onclick="window.location.href='{% url 'goods:detail' item.id %}'">
+                            <img src="{{ MEDIA_URL }}/goodsImages/{{ item.itempicture__itemPicture }}">
+                        </div>
+                        <div class="goods-info-text">
+                            <div class="fw-bold fs-5 goods-name" onclick="window.location.href='{% url 'goods:detail' item.id %}'">{{ item.itemsName }}</div>
+                            <div>{{ item.create_time }}</div>
+                        </div>
+                        <div class="w-25 fs-5">Price:  <span class="fs-4">{{ item.price }}</span> £</div>
+                        <div class="w-25 fs-5">Status:  <span class="badge rounded-pill bg-success">Finished</span></div>
+                    </div>
+                    <hr>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="upload-avatar-modal" class="modal fade" id="upload-avatar-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update avatar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-around">
+                        <img id="big-preview" class="border-1 border" src="{{ MEDIA_URL }}avatars/{{ user.Profile_picture }}" width="200" height="200">
+                        <div>
+                            <div class="fs-5 fw-light mb-4">Preview</div>
+                            <img id="sm-preview" class="rounded-circle" src="{{ MEDIA_URL }}avatars/{{ user.Profile_picture }}" width="70" height="70">
+                        </div>
+                    </div>
+
+                    <div id="upload-failed-alert" class="visually-hidden upload-img-alert fs-7 fw-light mx-auto mt-3 alert alert-danger d-flex align-items-center" role="alert">
+                        Upload image failed. Please try again
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                <span id="upload-avatar-btn" class="btn btn-outline-primary">
+                    Upload
+                    <input id="upload-avatar" type="file" accept="image/png, image/jpeg, image/jpg">
+                </span>
+
+                    <button type="button" class="btn btn-primary d-block" onclick="saveAvatar()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
