@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'haystack',       #Full-text retrieval framework
     'apps.user',     #model of user
     'apps.order',    #model of goods
     'apps.goods',    #model of order
@@ -137,3 +138,21 @@ MEDIA_URL = '/media/'
 
 #url of login
 LOGIN_URL='/user/login'
+
+#set the haystack
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        # use the whoosh engin
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        # create the retrieval file path
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    }
+}
+
+# auto create the retrieval items when customer add, modify and delete data.
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+
+
+
+

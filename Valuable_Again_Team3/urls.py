@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #home page ----- 首页path在这里生成
     path('', Index.as_view(), name='index'),
-    # path('goods/', include(('goods.urls', 'goods'), namespace='goods')),
+    path('search', include('haystack.urls')), #full-text retrieval framework
     path('user/', include(('apps.user.urls', 'apps.user'), namespace='user')),
     path('order/', include(('apps.order.urls', 'apps.order'), namespace='order')),
     path('', include(('apps.goods.urls', 'apps.goods'), namespace='goods')),

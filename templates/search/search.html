@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<br>
+Search by keyword:{{ query }} <br/>
+object of page:{{ page }} <br/>
+
+<ul>
+    {% for item in page %}
+        <li>search items' name :  {{ item.object.itemsName }}</li>
+    {% endfor %}
+</ul>
+
+object of paginator:{{ paginator }}
+</body>
+</html>
