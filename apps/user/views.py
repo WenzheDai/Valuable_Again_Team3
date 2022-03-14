@@ -7,6 +7,7 @@ from django.views.generic import View
 from Valuable_Again_Team3 import settings
 from apps.user.models import User, Address
 from apps.goods.models import Items
+from apps.order.models import Orders
 from django.contrib.auth import authenticate, login, logout
 from tools.mixin import LoginRequiredMixin
 import re
@@ -175,9 +176,17 @@ class UserOrdersView(LoginRequiredMixin, View):
     """the orders"""
     def get(self, request):
 
-        #get the information of orders
+        user = request.user
 
-        return render(request, 'user/orders.html')
+
+        sellOrderList = Orders.objects.filter(seller=user).values('id', 'tradGood__itemsName', 'tradGood__itempicture__itemPicture',
+                                                                  'create_time', 'tradGood__price', 'status', 'tradGood_id',
+                                                                  'buyer__Profile_picture', 'buyer__username')
+        buyOrderList = Orders.objects.filter(buyer=user).values('id', 'tradGood__itemsName', 'tradGood__itempicture__itemPicture',
+                                                                  'create_time', 'tradGood__price', 'status', 'tradGood_id',
+                                                                'seller__Profile_picture', 'seller__username')
+
+        return render(request, 'user/orders.html', {'sellOrderList': sellOrderList, 'buyOrderList': buyOrderList})
 
 
 

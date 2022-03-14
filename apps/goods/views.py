@@ -48,7 +48,7 @@ class ItemDetial(View):
         #update the data
         item.status = 'Booked'
         item.save()
-        Orders.objects.create(seller=user, buyer=itemUser, tradGood=item)
+        Orders.objects.create(seller=itemUser, buyer=user, tradGood=item)
 
         return JsonResponse({'success':True})
 
