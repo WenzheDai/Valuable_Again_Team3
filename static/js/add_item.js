@@ -79,7 +79,7 @@ function publishItem() {
         success: function(data) {
             let params = JSON.parse(data)
             if (params.success) {
-                location.replace("/")
+                location.replace("user/myItems")
             }else {
                 alert("Publish error!")
             }
