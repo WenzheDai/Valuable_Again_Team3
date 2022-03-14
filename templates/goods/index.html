@@ -9,17 +9,18 @@
 {% block body_block %}
     <div class="main-content container-sm">
         <nav class="category-list nav nav-pills mt-2">
-            <a id="category-all" class="nav-link" href="/">All</a>
-            <a id="category-Tableware" class="nav-link" href="Tableware">Tableware</a>
-            <a id="category-Food" class="nav-link" href="Food">Food</a>
-            <a id="category-Clothing" class="nav-link" href="Clothing">Clothing</a>
-            <a id="category-Device" class="nav-link" href="Device">Device</a>
-            <a id="category-Furniture" class="nav-link" href="Furniture">Furniture</a>
+            <a id="category-all" class="nav-link" href="{% url 'goods:index' %}">All</a>
+            <a id="category-Tableware" class="nav-link" href="{% url 'goods:indexCategory' 'Tableware' %}">Tableware</a>
+            <a id="category-Food" class="nav-link" href="{% url 'goods:indexCategory' 'Food' %}">Food</a>
+            <a id="category-Clothing" class="nav-link" href="{% url 'goods:indexCategory' 'Clothing' %}">Clothing</a>
+            <a id="category-Device" class="nav-link" href="{% url 'goods:indexCategory' 'Device' %}">Device</a>
+            <a id="category-Furniture" class="nav-link" href="{% url 'goods:indexCategory' 'Furniture' %}">Furniture</a>
         </nav>
         <div class="goods-list">
             {% if items %}
                 {% for item in items %}
-                    <div onclick="window.location.href='detail/{{ item.id }}'" class="card h-25 goods-card shadow">
+                    <div class=" h-25 goods-card">
+                    <div onclick="window.location.href='detail/{{ item.id }}'" class="card w-100 h-100 shadow">
                         <img src="{{ MEDIA_URL }}/goodsImages/{{ item.itempicture__itemPicture }}" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">{{ item.itemsName }}</h5>
@@ -27,6 +28,8 @@
                         <div class="card-footer">
                             <small class="text-muted">Price: {{ item.price }}</small>
                         </div>
+                    </div>
+
                     </div>
                 {% endfor %}
             {% endif %}

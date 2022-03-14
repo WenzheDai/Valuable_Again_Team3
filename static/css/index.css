@@ -12,5 +12,6 @@
     break-inside: avoid;
     text-align: center;
     cursor: pointer;
-    width: 180px;
+    width: 220px;
+    padding: 1rem;
 }
