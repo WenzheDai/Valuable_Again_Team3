@@ -25,16 +25,10 @@
             <img id="logo-text" src="{% static 'images/logo.png' %}" alt="" width="170" height="40">
         </a>
 
-
-        {# modefy of Dai --- do not modify the name and method!!!!!! #}
         <form id="search-form" class="d-flex" role="search" method="get" action="/search">
-{#            <select id="category-select" class="form-select" aria-label="Category">#}
-{#                <option selected value="0">Category</option>#}
-{#                <option value="1">One</option>#}
-{#                <option value="2">Two</option>#}
-{#                <option value="3">Three</option>#}
-{#            </select>#}
-            <input id="search-input" name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+            <input id="search-input" name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                   value="{% block search_query %}{% endblock %}">
             <button class="btn btn-outline-success" type="submit">Search</button>
 
         </form>

@@ -1,19 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Search</title>
-</head>
-<br>
-Search by keyword:{{ query }} <br/>
-object of page:{{ page }} <br/>
+{% extends 'goods/base.html' %}
+{% load staticfiles %}
 
-<ul>
-    {% for item in page %}
-        <li>search items' name :  {{ item.object.itemsName }}</li>
-    {% endfor %}
-</ul>
+{% block head_block %}
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
 
-object of paginator:{{ paginator }}
-</body>
-</html>
+{% block search_query %}{{ query }}{% endblock %}
+
+{% block body_block %}
+    <div class="main-content container-sm">
+        <div class="goods-list">
+            {% for item in page %}
+                <div class=" h-25 goods-card">
+                    <div onclick="window.location.href='detail/{{ item.object.id }}'" class="card w-100 h-100 shadow">
+                        <img src="{{ MEDIA_URL }}/goodsImages/{{ item.object.itempicture__itemPicture }}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.object.itemsName }}</h5>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Price: {{ item.object.price }}</small>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
