@@ -13,13 +13,13 @@
         <div class="goods-list">
             {% for item in page %}
                 <div class=" h-25 goods-card">
-                    <div onclick="window.location.href='detail/{{ item.object.id }}'" class="card w-100 h-100 shadow">
-                        <img src="{{ MEDIA_URL }}/goodsImages/{{ item.object.itempicture__itemPicture }}" class="card-img-top">
+                    <div onclick="window.location.href='detail/{{ item.object.item.id }}'" class="card w-100 h-100 shadow">
+                        <img src="{{ MEDIA_URL }}/goodsImages/{{ item.object.itemPicture }}" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title">{{ item.object.itemsName }}</h5>
+                            <h5 class="card-title">{{ item.object.item.itemsName }}</h5>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">Price: {{ item.object.price }}</small>
+                            <small class="text-muted">Price: {{ item.object.item.price }}</small>
                         </div>
                     </div>
 
