@@ -10,8 +10,8 @@ import time
 
 class Index(View):
     def get(self, request):
-        item = Items.objects.filter()
-        item = Items.objects.all().values('itemsName', 'price','id', 'itempicture__itemPicture')
+        item = Items.objects.filter(status='On sale').values('itemsName', 'price','id', 'itempicture__itemPicture')
+        # item = Items.objects.all().values('itemsName', 'price','id', 'itempicture__itemPicture')
         return render(request, 'goods/index.html', {'items':item})
 
 
