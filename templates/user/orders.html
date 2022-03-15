@@ -50,11 +50,11 @@
                                     <img src="{{ MEDIA_URL }}/goodsImages/{{ order.tradGood__itempicture__itemPicture }}">
                                 </div>
                                 <div class="goods-info-text">
-                                    <div class="fw-bold fs-5 goods-name text-truncate" onclick="window.location.href='{% url 'goods:detail' order.tradGood_id %}'">{{ order.tradGood__itemsName }}</div>
+                                    <div class="fw-bold fs-6 goods-name text-truncate" onclick="window.location.href='{% url 'goods:detail' order.tradGood_id %}'">{{ order.tradGood__itemsName }}</div>
                                     <div>{{ order.create_time }}</div>
                                 </div>
                                 <div class="goods-middle-box fs-6">
-                                    <div class="seller-box col-sm-9 d-flex align-items-center mb-1">
+                                    <div class="seller-box col-sm-9 d-flex align-items-center">
                                         <span>Seller: </span>
                                         <img src="{{ MEDIA_URL }}/avatars/{{ order.seller__Profile_picture }}" width="40" height="40">
                                         <div class="m-1">{{ order.seller__username }}</div>
@@ -84,11 +84,11 @@
                                     <img src="{{ MEDIA_URL }}/goodsImages/{{ order.tradGood__itempicture__itemPicture }}">
                                 </div>
                                 <div class="goods-info-text">
-                                    <div class="fw-bold fs-5 goods-name text-truncate" onclick="window.location.href='{% url 'goods:detail' order.tradGood_id %}'">{{ order.tradGood__itemsName }}</div>
+                                    <div class="fw-bold fs-6 goods-name text-truncate" onclick="window.location.href='{% url 'goods:detail' order.tradGood_id %}'">{{ order.tradGood__itemsName }}</div>
                                     <div>{{ order.create_time }}</div>
                                 </div>
                                 <div class="goods-middle-box fs-6">
-                                    <div class="seller-box col-sm-9 d-flex align-items-center mb-1">
+                                    <div class="seller-box col-sm-9 d-flex align-items-center">
                                         <span>Buyer: </span>
                                         <img src="{{ MEDIA_URL }}/avatars/{{ order.buyer__Profile_picture }}" width="40" height="40">
                                         <div class="m-1">{{ order.buyer__username }}</div>

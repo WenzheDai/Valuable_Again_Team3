@@ -164,7 +164,7 @@ class UserItemsView(LoginRequiredMixin, View):
         #get the user's items
         try:
             itemList = Items.objects.filter(user=user).values('id', 'itemsName', 'price', 'create_time',
-                                                              'describe', 'itemCategory', 'itempicture__itemPicture')
+                                                              'describe', 'itemCategory', 'itempicture__itemPicture').order_by('-create_time')
         except Address.DoesNotExist:
             itemList = None
 
@@ -182,10 +182,10 @@ class UserOrdersView(LoginRequiredMixin, View):
 
         sellOrderList = Orders.objects.filter(seller=user).values('id', 'tradGood__itemsName', 'tradGood__itempicture__itemPicture',
                                                                   'create_time', 'tradGood__price', 'status', 'tradGood_id',
-                                                                  'buyer__Profile_picture', 'buyer__username')
+                                                                  'buyer__Profile_picture', 'buyer__username').order_by('-create_time')
         buyOrderList = Orders.objects.filter(buyer=user).values('id', 'tradGood__itemsName', 'tradGood__itempicture__itemPicture',
                                                                   'create_time', 'tradGood__price', 'status', 'tradGood_id',
-                                                                'seller__Profile_picture', 'seller__username')
+                                                                'seller__Profile_picture', 'seller__username').order_by('-create_time')
 
         return render(request, 'user/orders.html', {'sellOrderList': sellOrderList, 'buyOrderList': buyOrderList})
 
