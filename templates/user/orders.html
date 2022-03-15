@@ -53,14 +53,23 @@
                                     <div class="fw-bold fs-5 goods-name text-truncate" onclick="window.location.href='{% url 'goods:detail' order.tradGood_id %}'">{{ order.tradGood__itemsName }}</div>
                                     <div>{{ order.create_time }}</div>
                                 </div>
-                                <div class="w-25 fs-6">Price:  <span class="fs-4">{{ order.tradGood__price }}</span> £</div>
-                                <div class="goods-right-box">
-                                    <div class="seller-box col-sm-9 d-flex align-items-center">
+                                <div class="goods-middle-box fs-6">
+                                    <div class="seller-box col-sm-9 d-flex align-items-center mb-1">
                                         <span>Seller: </span>
                                         <img src="{{ MEDIA_URL }}/avatars/{{ order.seller__Profile_picture }}" width="40" height="40">
-                                        <div class="m-2">{{ order.seller__username }}</div>
+                                        <div class="m-1">{{ order.seller__username }}</div>
                                     </div>
-                                    <div class="w-25 fs-6 d-flex">Status:  <span class="badge rounded-pill bg-success m-1">{{ order.status }}</span></div>
+                                    <div class="mb-2">Price:  <span class="fs-4">{{ order.tradGood__price }}</span> £</div>
+                                </div>
+                                <div class="goods-right-box">
+                                    <div class="w-25 fs-6 d-flex mb-3">Status:
+                                        <span class="badge {% if order.status == 'In progress' %}bg-primary{% elif order.status == 'Finished' %}bg-success{% else %}bg-secondary{% endif %} m-1">{{ order.status }}</span>
+                                    </div>
+                                    {% if order.status == 'In progress' %}
+                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#confirmModal" data-bs-order="{{ order.id }}"
+                                                data-bs-action="cancel">Cancel</button>
+                                    {% endif %}
                                 </div>
                             </div>
                         {% endfor %}
@@ -78,14 +87,23 @@
                                     <div class="fw-bold fs-5 goods-name text-truncate" onclick="window.location.href='{% url 'goods:detail' order.tradGood_id %}'">{{ order.tradGood__itemsName }}</div>
                                     <div>{{ order.create_time }}</div>
                                 </div>
-                                <div class="w-25 fs-6">Price:  <span class="fs-4">{{ order.tradGood__price }}</span> £</div>
-                                <div class="goods-right-box">
-                                    <div class="seller-box col-sm-9 d-flex align-items-center">
+                                <div class="goods-middle-box fs-6">
+                                    <div class="seller-box col-sm-9 d-flex align-items-center mb-1">
                                         <span>Buyer: </span>
                                         <img src="{{ MEDIA_URL }}/avatars/{{ order.buyer__Profile_picture }}" width="40" height="40">
-                                        <div class="m-2">{{ order.buyer__username }}</div>
+                                        <div class="m-1">{{ order.buyer__username }}</div>
                                     </div>
-                                    <div class="w-25 fs-6 d-flex">Status:  <span class="badge rounded-pill bg-success m-1">{{ order.status }}</span></div>
+                                    <div class="mb-2">Price:  <span class="fs-4">{{ order.tradGood__price }}</span> £</div>
+                                </div>
+                                <div class="goods-right-box">
+                                    <div class="w-25 fs-6 d-flex mb-3">Status:
+                                        <span class="badge {% if order.status == 'In progress' %}bg-primary{% elif order.status == 'Finished' %}bg-success{% else %}bg-secondary{% endif %} m-1">{{ order.status }}</span>
+                                    </div>
+                                    {% if order.status == 'In progress' %}
+                                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#confirmModal" data-bs-order="{{ order.id }}"
+                                                data-bs-action="finish">Finish</button>
+                                    {% endif %}
                                 </div>
 
                             </div>
@@ -132,6 +150,24 @@
                 </span>
 
                     <button type="button" class="btn btn-primary d-block" onclick="saveAvatar()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm Action</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure to <span class="action-name fw-bold"></span> the order?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="confirm-btn btn btn-primary">Yes</button>
                 </div>
             </div>
         </div>

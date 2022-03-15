@@ -153,8 +153,16 @@
     min-height: 10px;
 }
 
+.goods-middle-box {
+    width: 30%;
+}
+
 .goods-right-box {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 25%;
+}
+
+.goods-right-box .btn {
+    width: 120px;
 }

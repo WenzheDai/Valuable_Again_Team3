@@ -40,6 +40,19 @@ window.onload = function () {
         $("#sm-preview").removeAttr("src").attr("src", curAvatar);
         uploadedAvatar = ''
     })
+
+    var confirmModal = document.getElementById('confirmModal')
+    confirmModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        let button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        let orderId = button.getAttribute('data-bs-order')
+        let action = button.getAttribute(('data-bs-action'))
+        // console.log('orderid: '+orderId + ', action: '+action)
+
+        $("#confirmModal .action-name").text(action)
+        $("#confirmModal .confirm-btn").attr('onclick', action+"Order("+orderId+")")
+    })
 }
 
 // an input rule just allowed numbers
@@ -72,14 +85,44 @@ function getCookie(name) {
 function saveAvatar() {
     if (uploadedAvatar !== '') {
         let formData = new FormData()
-    formData.append('avatarName', uploadedAvatar)
+        formData.append('avatarName', uploadedAvatar)
+        let csrftoken = getCookie('csrftoken');
+        $.ajaxSetup({ beforeSend: function(xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        })
+        $.ajax({
+            url: 'saveAvatar',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: formData,
+            dataType: 'text',
+            success: function(data) {
+                let params = JSON.parse(data)
+                if (params.success) {
+                    location.reload()
+                }else {
+                    $("#upload-failed-alert").classList.remove("visually-hidden")
+                }
+
+            }
+        })
+    }
+    location.reload()
+}
+
+function cancelOrder(orderId) {
+    // console.log('cancel ' + orderId)
+    let formData = new FormData()
+    formData.append('order_id', orderId)
     let csrftoken = getCookie('csrftoken');
     $.ajaxSetup({ beforeSend: function(xhr, settings) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         }
     })
     $.ajax({
-        url: 'saveAvatar',
+        url: 'cancel',
         type: 'POST',
         contentType: false,
         processData: false,
@@ -90,11 +133,37 @@ function saveAvatar() {
             if (params.success) {
                 location.reload()
             }else {
-                $("#upload-failed-alert").classList.remove("visually-hidden")
+                alert(params.errmsg?params.errmsg:"Cancel action failed!")
             }
 
         }
     })
-    }
-    location.reload()
+}
+
+function finishOrder(orderId) {
+    // console.log('finish ' + orderId)
+    let formData = new FormData()
+    formData.append('order_id', orderId)
+    let csrftoken = getCookie('csrftoken');
+    $.ajaxSetup({ beforeSend: function(xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    })
+    $.ajax({
+        url: 'finish',
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        data: formData,
+        dataType: 'text',
+        success: function(data) {
+            let params = JSON.parse(data)
+            if (params.success) {
+                location.reload()
+            }else {
+                alert(params.errmsg?params.errmsg:"Finish action failed!")
+            }
+
+        }
+    })
 }
