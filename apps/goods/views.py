@@ -10,6 +10,7 @@ import time
 
 class Index(View):
     def get(self, request):
+        item = Items.objects.filter()
         item = Items.objects.all().values('itemsName', 'price','id', 'itempicture__itemPicture')
         return render(request, 'goods/index.html', {'items':item})
 
@@ -25,6 +26,10 @@ class ItemDetial(View):
                                           'user__username', 'user__Profile_picture', 'user__address__Address',
                                           'user__email', 'user_id')
         detail = item.get(id=item_id)
+
+
+
+
 
         return render(request, 'goods/detail.html', {'item':detail})
 
@@ -72,7 +77,6 @@ class AddItem(LoginRequiredMixin,View):
         #add the data to database
         item = Items.objects.create(user=user,itemsName=goodsName, price=price, describe=describe, itemCategory=category)
         ItemPicture.objects.create(item=item, itemPicture=image)
-
 
         return JsonResponse({'success':True})
 

@@ -108,6 +108,7 @@ class UserInfoView(LoginRequiredMixin, View):
 
         #get the record of history
 
+
         return render(request, 'user/userProfile.html', {'de_address':de_address})
 
 class AddressView(LoginRequiredMixin, View):
