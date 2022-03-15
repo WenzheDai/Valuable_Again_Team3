@@ -20,7 +20,7 @@
             {% if items %}
                 {% for item in items %}
                     <div class=" h-25 goods-card">
-                        <div onclick="window.location.href='detail/{{ item.id }}'" class="card w-100 h-100 shadow">
+                        <div onclick="window.location.href='{% url 'goods:detail' item.id %}'" class="card w-100 h-100 shadow">
                             <img src="{{ MEDIA_URL }}/goodsImages/{{ item.itempicture__itemPicture }}" class="card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title">{{ item.itemsName }}</h5>
