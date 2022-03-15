@@ -1,6 +1,6 @@
 #define the search class
 from haystack import indexes
-from apps.goods.models import Items
+from apps.goods.models import ItemPicture
 
 class ItemsIndex(indexes.SearchIndex, indexes.Indexable):
     # string of retrieval
@@ -9,7 +9,7 @@ class ItemsIndex(indexes.SearchIndex, indexes.Indexable):
 
     def get_model(self):
         #return my model
-        return Items
+        return ItemPicture
 
     #create the retrieval data.
     def index_queryset(self, using=None):
