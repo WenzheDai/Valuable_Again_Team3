@@ -130,26 +130,27 @@ def populate():
                        'image': 'blanket.jpg'}
                       ]
 
-    users = {'Wenzhe Dai': {'address': aparto_address, 'items': tableware_items,
+    users = {'Wenzhe Dai': {'address': aparto_address, 'items': tableware_items, 'email': '2628148d@student.gla.ac.uk',
+                            'Profile_picture': 'Wenzhe Dai.jpg',
                         'password': 'pbkdf2_sha256$120000$WFTo7No5Rzb0$2wbqRcQci49Vt4XDoq4HbHB9UAx2LiDpIM3+eIqhj4I='},
-        'Chaoran Ma': {'address': village_address, 'items': food_items,
+        'Chaoran Ma': {'address': village_address, 'items': food_items, 'email': '2639687m@student.gla.ac.uk',
+                       'Profile_picture': 'Chaoran Ma.jpg',
                        'password': 'pbkdf2_sha256$120000$WFTo7No5Rzb0$2wbqRcQci49Vt4XDoq4HbHB9UAx2LiDpIM3+eIqhj4I='},
-        'Xinrong He': {'address': view_address, 'items': device_items,
+        'Xinrong He': {'address': view_address, 'items': device_items, 'email': '2515527h@student.gla.ac.uk',
+                       'Profile_picture': 'Xinrong He.jpg',
                        'password': 'pbkdf2_sha256$120000$WFTo7No5Rzb0$2wbqRcQci49Vt4XDoq4HbHB9UAx2LiDpIM3+eIqhj4I='},
-        'Tianyuan Wang': {'address': vita_address, 'items': furniture_items,
+        'Tianyuan Wang': {'address': vita_address, 'items': furniture_items, 'email': '2521798w@student.gla.ac.uk',
+                          'Profile_picture': 'Tianyuan Wang.jpg',
                           'password': 'pbkdf2_sha256$120000$WFTo7No5Rzb0$2wbqRcQci49Vt4XDoq4HbHB9UAx2LiDpIM3+eIqhj4I='},
-        'Shunyu Yang': {'address': dm_address, 'items': clothing_items,
+        'Shunyu Yang': {'address': dm_address, 'items': clothing_items, 'email': '2627664y@student.gla.ac.uk',
+                        'Profile_picture': 'Shunyu Yang.jpg',
                         'password': 'pbkdf2_sha256$120000$WFTo7No5Rzb0$2wbqRcQci49Vt4XDoq4HbHB9UAx2LiDpIM3+eIqhj4I='}}
 
     # goods data
 
-
-
-    # order data
-
     # populate users
     for user, user_data in users.items():
-        c = add_users(user, user_data['password'])
+        c = add_users(user, user_data['password'], user_data['email'], user_data['Profile_picture'])
         for p in user_data['address']:
             add_address(c, p['name'], p['Address'], p['postcode'], p['phone'], p['is_default'])
         for f in user_data['items']:
@@ -170,9 +171,11 @@ def add_address(user, name, address, postcode, phone, is_default):
     return p
 
 
-def add_users(username, password):
+def add_users(username, password, email, profile_picture):
     c = User.objects.get_or_create(username=username)[0]
     c.password = password
+    c.email = email
+    c.Profile_picture = profile_picture
     c.save()
     return c
 
