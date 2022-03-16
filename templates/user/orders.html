@@ -59,7 +59,7 @@
                                         <img src="{{ MEDIA_URL }}/avatars/{{ order.seller__Profile_picture }}" width="40" height="40">
                                         <div class="m-1">{{ order.seller__username }}</div>
                                     </div>
-                                    <div class="mb-2">Price:  <span class="fs-4">{{ order.tradGood__price }}</span> £</div>
+                                    <div class="mb-2">Price:  <span class="fs-4 fw-bold text-danger">{{ order.tradGood__price }}</span> £</div>
                                 </div>
                                 <div class="goods-right-box">
                                     <div class="w-25 fs-6 d-flex mb-3">Status:
@@ -93,7 +93,7 @@
                                         <img src="{{ MEDIA_URL }}/avatars/{{ order.buyer__Profile_picture }}" width="40" height="40">
                                         <div class="m-1">{{ order.buyer__username }}</div>
                                     </div>
-                                    <div class="mb-2">Price:  <span class="fs-4">{{ order.tradGood__price }}</span> £</div>
+                                    <div class="mb-2">Price:  <span class="fs-4 fw-bold text-danger">{{ order.tradGood__price }}</span> £</div>
                                 </div>
                                 <div class="goods-right-box">
                                     <div class="w-25 fs-6 d-flex mb-3">Status:

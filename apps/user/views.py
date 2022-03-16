@@ -163,7 +163,7 @@ class UserItemsView(LoginRequiredMixin, View):
 
         #get the user's items
         try:
-            itemList = Items.objects.filter(user=user).values('id', 'itemsName', 'price', 'create_time',
+            itemList = Items.objects.filter(user=user).values('id', 'itemsName', 'price', 'create_time', 'status',
                                                               'describe', 'itemCategory', 'itempicture__itemPicture').order_by('-create_time')
         except Address.DoesNotExist:
             itemList = None
