@@ -25,7 +25,7 @@
                         {% csrf_token %}   {# Password protection #}
                         <div class="col-12 input-group-sm">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
+                            <input type="text" class="form-control" id="name" name="name" required value="{% if registered %}{{ username }}{% endif %}">
                             <div class="invalid-feedback">
                                 Please enter your name.
                             </div>
@@ -70,11 +70,21 @@
 
     </div>
 
-{% endblock %}
+    {% if registered %}
+    <div class="welcome-message toast show align-items-center position-fixed top-0 start-50 translate-middle-x p-1 mt-2" role="alert"
+         aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Hello, <span class="fs-5">{{ username }} </span> ! Welcome to join us!
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+    {% endif %}
 
-{# Advice of login page :#}
-{# we can add the function: remember the username  #}
-{# we can use the email to activate the user #}
+
+
+{% endblock %}
 
 
 

@@ -51,8 +51,8 @@ class RegisterView(View):
         #register in database
         user = User.objects.create_user(username, email, password)
 
-        return redirect(reverse('goods:index'))
-
+        # return redirect(reverse('goods:index'))
+        return render(request, 'user/login.html', {'registered':True, 'username': user.username})
 
 class LoginView(View):
     """Login"""
