@@ -63,6 +63,14 @@
                         <input type="text" readonly disabled class="form-control-plaintext" value="{{ item.user__email }}">
                     </div>
                 </div>
+                {% if item.user__address__phone != '' %}
+                    <div class="mb-3 row">
+                        <label class="col-sm-2 col-form-label">Phone</label>
+                        <div class="col-sm-9">
+                            <input type="text" readonly disabled class="form-control-plaintext" value="{{ item.user__address__phone }}">
+                        </div>
+                    </div>
+                {% endif %}
                 <div class="mt-4 row">
                     {% if item.status == 'On sale' and user.is_authenticated and user.id != item.user_id%}
                         <button class="book-btn btn btn-success" onclick="bookGoods({{ item.id }})">Book</button>
