@@ -56,14 +56,14 @@
                                 <div class="goods-middle-box fs-6">
                                     <div class="seller-box col-sm-9 d-flex align-items-center">
                                         <span>Seller: </span>
-                                        <img src="{{ MEDIA_URL }}/avatars/{{ order.seller__Profile_picture }}" width="40" height="40">
+                                        <img src="{{ MEDIA_URL }}/avatars/{{ order.seller__Profile_picture }}" class="rounded-circle" width="30" height="30">
                                         <div class="m-1">{{ order.seller__username }}</div>
                                     </div>
                                     <div class="mb-2">Price:  <span class="fs-4 fw-bold text-danger">{{ order.tradGood__price }}</span> £</div>
                                 </div>
                                 <div class="goods-right-box">
                                     <div class="w-25 fs-6 d-flex mb-3">Status:
-                                        <span class="badge {% if order.status == 'In progress' %}bg-primary{% elif order.status == 'Finished' %}bg-success{% else %}bg-secondary{% endif %} m-1">{{ order.status }}</span>
+                                        <span class="badge fs-6 {% if order.status == 'In progress' %}bg-primary{% elif order.status == 'Finished' %}bg-success{% else %}bg-secondary{% endif %} m-1">{{ order.status }}</span>
                                     </div>
                                     {% if order.status == 'In progress' %}
                                         <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
@@ -90,14 +90,14 @@
                                 <div class="goods-middle-box fs-6">
                                     <div class="seller-box col-sm-9 d-flex align-items-center">
                                         <span>Buyer: </span>
-                                        <img src="{{ MEDIA_URL }}/avatars/{{ order.buyer__Profile_picture }}" width="40" height="40">
+                                        <img src="{{ MEDIA_URL }}/avatars/{{ order.buyer__Profile_picture }}" class="rounded-circle" width="30" height="30">
                                         <div class="m-1">{{ order.buyer__username }}</div>
                                     </div>
                                     <div class="mb-2">Price:  <span class="fs-4 fw-bold text-danger">{{ order.tradGood__price }}</span> £</div>
                                 </div>
                                 <div class="goods-right-box">
                                     <div class="w-25 fs-6 d-flex mb-3">Status:
-                                        <span class="badge {% if order.status == 'In progress' %}bg-primary{% elif order.status == 'Finished' %}bg-success{% else %}bg-secondary{% endif %} m-1">{{ order.status }}</span>
+                                        <span class="badge fs-6 {% if order.status == 'In progress' %}bg-primary{% elif order.status == 'Finished' %}bg-success{% else %}bg-secondary{% endif %} m-1">{{ order.status }}</span>
                                     </div>
                                     {% if order.status == 'In progress' %}
                                         <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"

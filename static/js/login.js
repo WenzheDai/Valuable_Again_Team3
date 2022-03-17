@@ -1,5 +1,5 @@
 window.onload = function () {
-    if (localStorage.getItem("username") != null && !document.getElementsByClassName("welcome-message")){
+    if (localStorage.getItem("username") != null && document.getElementsByClassName("welcome-message").length===0){
         document.getElementById("name").value = localStorage.getItem("username")
         document.getElementById("checkRememberName").checked = true
     }

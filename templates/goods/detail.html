@@ -53,7 +53,7 @@
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label">Seller</label>
                     <div class="seller-box col-sm-9 d-flex align-items-center">
-                        <img src="{{ MEDIA_URL }}/avatars/{{ item.user__Profile_picture }}" width="40" height="40">
+                        <img src="{{ MEDIA_URL }}/avatars/{{ item.user__Profile_picture }}" class="rounded-circle" width="40" height="40">
                         <div class="m-2">{{ item.user__username }}</div>
                     </div>
                 </div>
@@ -65,9 +65,12 @@
                 </div>
                 <div class="mt-4 row">
                     {% if item.status == 'On sale' and user.is_authenticated and user.id != item.user_id%}
-                        <button class="book-btn btn btn-primary" onclick="bookGoods({{ item.id }})">Book</button>
+                        <button class="book-btn btn btn-success" onclick="bookGoods({{ item.id }})">Book</button>
                     {% elif item.status != 'On sale' %}
-                        <div>{{ item.status }}</div>
+                        <label class="col-sm-2 col-form-label">Status</label>
+                        <div class="col-sm-9">
+                            <span class="fs-6 badge {% if item.status == 'Booked' %}bg-primary{% elif item.status == 'Sold' %}bg-secondary{% endif %}">{{ item.status }}</span>
+                        </div>
                     {% endif %}
                 </div>
             </div>
