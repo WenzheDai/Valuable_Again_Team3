@@ -9,9 +9,9 @@ from django.test import Client
 # Create your tests here.
 class UserTestCase(TestCase):
     def test_user(self):
-        self.username = "test"
-        self.password = "password"
-        self.email = "test@gmail.com"
+        self.username = 'test'
+        self.password = 'password'
+        self.email = 'test@gmail.com'
 
         self.user = User.objects.create_user(username=self.username, email=self.email, password=self.password)
         self.user.save()
@@ -21,7 +21,7 @@ class UserTestCase(TestCase):
         # login test
         self.client.login(username=self.username, password=self.password)
         response = self.client.get('')
-        self.assertContains(response, "Logout")
+        self.assertContains(response, 'Logout')
 
         # profile test
         response = self.client.get('/user/')
@@ -40,15 +40,15 @@ class UserTestCase(TestCase):
         # logout test
         self.client.logout()
         response = self.client.get('')
-        self.assertContains(response, "Sign in")
+        self.assertContains(response, 'Sign in')
 
 
 class GoodsTestCase(TestCase):
     def test_user_goods(self):
         # create the test user
-        self.username = "test"
-        self.password = "password"
-        self.email = "test@gmail.com"
+        self.username = 'test'
+        self.password = 'password'
+        self.email = 'test@gmail.com'
 
         self.user = User.objects.create_user(username=self.username, email=self.email, password=self.password)
         self.user.save()
@@ -58,12 +58,27 @@ class GoodsTestCase(TestCase):
 
         # publish item test
         test_item = {
-            "goodsName": "testGoods",
-            "goodsPrice": "5.0",
-            "goodsCategory": "test category",
-            "goodsDesc": "test description",
-            "goodsImage": "test img"
+            'goodsName': 'test Goods',
+            'goodsPrice': '5.0',
+            'goodsCategory': 'test category',
+            'goodsDesc': 'test description',
+            'goodsImage': 'test img'
         }
-        response = self.client.post(reverse('goods:addItem'), data=test_item, follow=True)
-        latest_item = Items.objects.all().latest('id')
-        self.assertEqual(latest_item.price, float(test_item["goodsPrice"]))
+        self.client.post(reverse('goods:addItem'), data=test_item, follow=True)
+        response = self.client.get(reverse('user:myItems'))
+        self.assertContains(response, test_item['goodsName'])
+        self.assertContains(response, 'Finished')
+
+        # search test
+        response = self.client.get('/search?q=test')
+        self.assertContains(response, '<h5 class="card-title">test')
+        response = self.client.get('/search?q=test2')
+        self.assertNotContains(response, '<h5 class="card-title">test2')
+
+        # create a new client account to test book function
+        user2 = User.objects.create_user(username='test2', password='test2')
+        user2.save()
+        self.client.login(username='test2', password='test2')
+        self.client.post('/detail/bookGoods', {'id': '1'})
+        response = self.client.get('/user/orders')
+        self.assertContains(response, test_item['goodsName'])
