@@ -30,3 +30,7 @@
 #right-box .avatar-box .dropdown-menu{
     min-width: fit-content;
 }
+
+#notice-box {
+    width: 200px;
+}

@@ -28,7 +28,7 @@ class FinishOrder(View):
 
         #update the notices
         buyer = order.buyer
-        buyer.notices = 'The seller has agreed to the order'
+        buyer.notices = 'Your order status has been updated. Please go to the order page to check.'
         buyer.save()
 
         return JsonResponse({'success':True})
@@ -57,7 +57,7 @@ class CancelOrder(View):
 
         #update the database
         seller = order.seller
-        seller.notices = 'Your order have been Cancel'
+        seller.notices = 'Your order status has been updated. Please go to the order page to check.'
         seller.save()
 
         return JsonResponse({'success':True})

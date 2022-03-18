@@ -1,6 +1,6 @@
 from django.urls import path, include
 from apps.goods import views
-from apps.goods.views import Index,IndexCategory, AddItem, UpLoadGoodsImage, ItemDetial
+from apps.goods.views import Index,IndexCategory, AddItem, UpLoadGoodsImage, ItemDetial, Notice
 
 urlpatterns = [
     # path('', views.index, name='index'),
@@ -10,5 +10,6 @@ urlpatterns = [
     path('detail/<int:item_id>', ItemDetial.as_view(), name='detail'),
     path('addItem', AddItem.as_view(), name='addItem'),
     path('uploadGoodsImage', UpLoadGoodsImage.as_view(), name='uploadGoodsImage'),
-    path('detail/bookGoods', ItemDetial.as_view(), name='bookGoods')
+    path('detail/bookGoods', ItemDetial.as_view(), name='bookGoods'),
+    path('user/notice', Notice.as_view(), name='notice')
 ]
