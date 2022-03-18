@@ -106,8 +106,6 @@ class UserInfoView(LoginRequiredMixin, View):
         except Address.DoesNotExist:
             de_address = None
 
-        #get the record of history
-
 
         return render(request, 'user/userProfile.html', {'de_address':de_address})
 

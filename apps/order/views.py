@@ -26,6 +26,11 @@ class FinishOrder(View):
         item.status = 'Sold'
         item.save()
 
+        #update the notices
+        buyer = order.buyer
+        buyer.notices = 'The seller has agreed to the order'
+        buyer.save()
+
         return JsonResponse({'success':True})
 
 
@@ -49,6 +54,11 @@ class CancelOrder(View):
         order.save()
         item.status = 'On sale'
         item.save()
+
+        #update the database
+        seller = order.seller
+        seller.notices = 'Your order have been Cancel'
+        seller.save()
 
         return JsonResponse({'success':True})
 

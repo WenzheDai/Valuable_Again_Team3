@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, response
 from django.views.generic import View
 from tools.mixin import LoginRequiredMixin
 from apps.goods.models import Items, ItemPicture
@@ -27,10 +27,6 @@ class ItemDetial(View):
                                           'user__email', 'user_id')
         detail = item.get(id=item_id)
 
-
-
-
-
         return render(request, 'goods/detail.html', {'item':detail})
 
     def post(self, request):
@@ -54,6 +50,10 @@ class ItemDetial(View):
         item.status = 'Booked'
         item.save()
         Orders.objects.create(seller=itemUser, buyer=user, tradGood=item)
+
+        #update the notice
+        itemUser.notices = 'Your good have been booked!'
+        itemUser.save()
 
         return JsonResponse({'success':True})
 
@@ -104,4 +104,23 @@ class UpLoadGoodsImage(LoginRequiredMixin,View):
             return JsonResponse({'success': True, 'name': fileName})
         else:
             return JsonResponse({'success': False, 'errmsg': "Image upload failed."})
+
+class Notice(LoginRequiredMixin, View):
+    def get(self, request):
+        #get he notices
+        user = request.user
+        notice = user.notices
+        if notice != None:
+            return JsonResponse({'success':True, 'notice':notice})
+        else:
+            return JsonResponse({'success':False, 'errmsg': 'do not have any notice in database'})
+
+    def post(self, request):
+        user = request.user
+
+        #update the notice
+        user.notices = 'No any notices'
+        user.save()
+
+        return JsonResponse({'success':True})
 

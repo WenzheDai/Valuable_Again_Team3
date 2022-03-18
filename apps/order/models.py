@@ -11,7 +11,6 @@ class Orders(BaseModel):
     #Three status In progress/Finished/Cancelled
     status = models.CharField(max_length=32, verbose_name='orderStatus', default="In progress")
 
-
     class Meta:
         db_table = "df_orders"
         verbose_name = "Orders"

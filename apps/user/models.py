@@ -5,6 +5,7 @@ from db.base_model import BaseModel
 class User(AbstractUser, BaseModel):
     """Model of User-----inherit the Django built-in authenticator system"""
     Profile_picture = models.ImageField(max_length=512, verbose_name="Profile_picture", default="default-avatar.png")
+    notices = models.CharField(max_length=128, verbose_name='notice', default='No any notices')
 
     class Meta:
         db_table = 'df_user'
