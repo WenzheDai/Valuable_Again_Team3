@@ -42,7 +42,8 @@ window.onload = function () {
     })
 
     var confirmModal = document.getElementById('confirmModal')
-    confirmModal.addEventListener('show.bs.modal', function (event) {
+    if (confirmModal != null) {
+        confirmModal.addEventListener('show.bs.modal', function (event) {
         // Button that triggered the modal
         let button = event.relatedTarget
         // Extract info from data-bs-* attributes
@@ -53,6 +54,8 @@ window.onload = function () {
         $("#confirmModal .action-name").text(action)
         $("#confirmModal .confirm-btn").attr('onclick', action+"Order("+orderId+")")
     })
+    }
+
 }
 
 // an input rule just allowed numbers

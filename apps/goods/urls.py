@@ -11,5 +11,9 @@ urlpatterns = [
     path('addItem', AddItem.as_view(), name='addItem'),
     path('uploadGoodsImage', UpLoadGoodsImage.as_view(), name='uploadGoodsImage'),
     path('detail/bookGoods', ItemDetial.as_view(), name='bookGoods'),
-    path('user/notice', Notice.as_view(), name='notice')
+    path('notice', Notice.as_view(), name='notice'),
+    path('user/notice', Notice.as_view(), name='notice'),
+    path('detail/notice', Notice.as_view(), name='notice'),
+    path('addItem/notice', Notice.as_view(), name='notice'),
+    path('category/notice', Notice.as_view(), name='notice'),
 ]
