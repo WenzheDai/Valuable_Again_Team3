@@ -67,7 +67,7 @@ class GoodsTestCase(TestCase):
         self.client.post(reverse('goods:addItem'), data=test_item, follow=True)
         response = self.client.get(reverse('user:myItems'))
         self.assertContains(response, test_item['goodsName'])
-        self.assertContains(response, 'Finished')
+        self.assertContains(response, 'On sale')
 
         # search test
         response = self.client.get('/search?q=test')
