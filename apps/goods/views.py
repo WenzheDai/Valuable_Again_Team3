@@ -27,6 +27,9 @@ class ItemDetial(View):
                                           'user__email', 'user_id', 'user__address__phone')
         detail = item.get(id=item_id)
 
+        user = request.user
+
+
         return render(request, 'goods/detail.html', {'item':detail})
 
     def post(self, request):

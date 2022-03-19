@@ -27,3 +27,6 @@ class ItemPicture(BaseModel):
         verbose_name = "ItemPicture"
         verbose_name_plural = verbose_name
 
+class HistoryRecord(BaseModel):
+    item = models.ForeignKey(Items, verbose_name='history', on_delete=None)
+

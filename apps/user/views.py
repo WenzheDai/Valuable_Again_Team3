@@ -224,7 +224,9 @@ class SaveAvatar(LoginRequiredMixin,View):
         img = request.POST.get("avatarName")
 
         #update the database
-        User.objects.update(Profile_picture=img)
+
+        user.Profile_picture = img
+        user.save()
 
         #check the update
         if User.objects.get(Profile_picture=img):
