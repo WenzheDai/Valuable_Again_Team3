@@ -27,9 +27,9 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = '12uyq+4*r+%x==o*59tbes8@1y^8*i9&c7c^!^9d(95nf=2qx0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['valuable888again.pythonanywhere.com']
 
 
 # Application definition
@@ -151,6 +151,8 @@ HAYSTACK_CONNECTIONS = {
 
 # auto create the retrieval items when customer add, modify and delete data.
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+
 
 
 
