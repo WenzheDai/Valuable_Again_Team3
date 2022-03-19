@@ -131,6 +131,11 @@ The functions of the system include the following:
 7. Sellers and buyers can rate and comment on their integrity after the transaction is completed. And displayed on the personal home page.
 8. Administrators can view details of all users and products as well as transaction history. 
 
+## Test
+```
+python manage.py test tests
+```
+
 ## Contributers
 
 - Mr Dai
