@@ -56,6 +56,14 @@
                             <input type="text" disabled readonly class="form-control-plaintext" value="{{ user.email }}">
                         </div>
                     </div>
+                    {% if de_address.phone != '' %}
+                        <div class="mb-2 row">
+                            <label class="col-sm-2 col-form-label">Phone</label>
+                            <div class="col-sm-10">
+                                <input type="text" disabled readonly class="form-control-plaintext" value="{{ de_address.phone }}">
+                            </div>
+                        </div>
+                    {% endif %}
                     <div class="mb-2 row">
                         <label class="col-sm-2 col-form-label">Address</label>
                         <div class="col-sm-10">
@@ -66,40 +74,40 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="mb-2">
-                        <label class="col-sm-10 col-form-label">Recently Viewed</label>
-                        <div class="col-sm-12 viewed-goods-list">
-
-                            <div onclick="window.location.href=''" class="card h-25 goods-card shadow">
-                                <img src="{% static 'images/goods1.jpg' %}" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">Last viewed 3 mins ago</small>
-                                </div>
-                            </div>
-                            <div onclick="window.location.href=''" class="card h-25 goods-card shadow">
-                                <img src="{% static 'images/goods2.jpg' %}" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">Last viewed 3 mins ago</small>
-                                </div>
-                            </div>
-                            <div onclick="window.location.href=''" class="card h-25 goods-card shadow">
-                                <img src="{% static 'images/goods1.jpg' %}" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">Last viewed 3 mins ago</small>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                    {#                    <div class="mb-2">#}
+                    {#                        <label class="col-sm-10 col-form-label">Recently Viewed</label>#}
+                    {#                        <div class="col-sm-12 viewed-goods-list">#}
+                    {##}
+                    {#                            <div onclick="window.location.href=''" class="card h-25 goods-card shadow">#}
+                    {#                                <img src="{% static 'images/goods1.jpg' %}" class="card-img-top">#}
+                    {#                                <div class="card-body">#}
+                    {#                                    <h5 class="card-title">Card title</h5>#}
+                    {#                                </div>#}
+                    {#                                <div class="card-footer">#}
+                    {#                                    <small class="text-muted">Last viewed 3 mins ago</small>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                            <div onclick="window.location.href=''" class="card h-25 goods-card shadow">#}
+                    {#                                <img src="{% static 'images/goods2.jpg' %}" class="card-img-top">#}
+                    {#                                <div class="card-body">#}
+                    {#                                    <h5 class="card-title">Card title</h5>#}
+                    {#                                </div>#}
+                    {#                                <div class="card-footer">#}
+                    {#                                    <small class="text-muted">Last viewed 3 mins ago</small>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                            <div onclick="window.location.href=''" class="card h-25 goods-card shadow">#}
+                    {#                                <img src="{% static 'images/goods1.jpg' %}" class="card-img-top">#}
+                    {#                                <div class="card-body">#}
+                    {#                                    <h5 class="card-title">Card title</h5>#}
+                    {#                                </div>#}
+                    {#                                <div class="card-footer">#}
+                    {#                                    <small class="text-muted">Last viewed 3 mins ago</small>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {##}
+                    {#                        </div>#}
+                    {#                    </div>#}
                 </div>
             </div>
         </div>
