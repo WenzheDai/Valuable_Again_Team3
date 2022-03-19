@@ -43,11 +43,7 @@
                     <div class="mb-2 row">
                         <label class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
-                            {% if de_address %}
-                                <input type="text" disabled readonly class="form-control-plaintext" value="{{ de_address.name }}">
-                            {% else %}
-                                <input type="text" disabled readonly class="form-control-plaintext" value="NO set">
-                            {% endif %}
+                            <input type="text" disabled readonly class="form-control-plaintext" value="{{ user.username }}">
                         </div>
                     </div>
                     <div class="mb-2 row">
@@ -56,7 +52,7 @@
                             <input type="text" disabled readonly class="form-control-plaintext" value="{{ user.email }}">
                         </div>
                     </div>
-                    {% if de_address.phone != '' %}
+                    {% if de_address and de_address.phone != '' %}
                         <div class="mb-2 row">
                             <label class="col-sm-2 col-form-label">Phone</label>
                             <div class="col-sm-10">
@@ -70,7 +66,7 @@
                             {% if de_address %}
                                 <input type="text" disabled readonly class="form-control-plaintext" value="{{ de_address.Address }}">
                             {% else %}
-                                <input type="text" disabled readonly class="form-control-plaintext" value="NO set">
+                                <input type="text" disabled readonly class="form-control-plaintext" value="(Not set)">
                             {% endif %}
                         </div>
                     </div>

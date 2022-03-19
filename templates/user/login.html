@@ -21,7 +21,7 @@
                     Sign in to Valuable Again
                 </div>
                 <div class="card-body bg-light shadow-sm">
-                    <form class="row g-3" onsubmit="return validateForm()" novalidate method="post">
+                    <form class="row g-3" onsubmit="return validateForm()" novalidate method="post" action="/user/login/">
                         {% csrf_token %}   {# Password protection #}
                         <div class="col-12 input-group-sm">
                             <label for="name" class="form-label">Name</label>
