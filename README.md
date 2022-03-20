@@ -54,7 +54,7 @@ Sellers can view the pre-order information for their items, as well as update th
 ### Built With
 
 * [django 2.2.5](https://www.djangoproject.com)
-* [Python 3.7.5](https://www.python.org)
+* [Python 3.8](https://www.python.org)
 * [Bootstrap](https://getbootstrap.com)
 
 
@@ -82,7 +82,7 @@ Install Anaconda for vitual enviroments.
    ```
 3. Set up the eviroment if the prerequisites requirements.txt isn't executed.
    ```conda 
-   create -n Valuable_Again_Team3 python=3.7.5
+   create -n Valuable_Again_Team3 python=3.8.8
    ```
    ```
    conda activate Valuable_Again_Team3
